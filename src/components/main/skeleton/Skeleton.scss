@@ -1,0 +1,33 @@
+.SkeletonPizza {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    >.SkeletonButtons {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+
+        >.ant-skeleton>.addButton {
+            width: 125px !important;
+        }
+    }
+
+    >.ant-skeleton {
+        .ant-skeleton-image {
+            border-radius: 50%;
+            width: 211px;
+            height: 211px;
+        }
+
+        >.ant-skeleton-content h3 {
+            border-radius: 10px;
+            width: 257px !important;
+            height: 30px;
+        }
+
+    }
+}

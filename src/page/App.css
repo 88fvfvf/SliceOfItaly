@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+h1,h2,h3,h4{
+  font-family: 'Nunito';
+  font-weight: 600;
+}
+.container {
+  margin-inline: auto;
+  margin-block: 20px;
+  max-width: 1340px;
+  width: 100%;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-danger:not(.ant-dropdown-menu-item-disabled):hover{
+  color: #FE5F1E;
+  background-color: #FFF7EE;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected{
+  background-color: #FFF7EE;
+}
+.ant-dropdown-menu-item:focus-visible{
+  outline: none !important;
+}

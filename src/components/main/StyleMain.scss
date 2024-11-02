@@ -1,0 +1,116 @@
+main {
+    display: flex;
+    justify-content: space-between;
+
+    >.main {
+        display: flex;
+        flex-direction: column;
+        max-width: 955px;
+        width: 100%;
+
+        >.main_block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+
+            >.main__pizza {
+                display: flex;
+                flex-direction: column;
+                padding-top: 35px;
+                max-width: 285px;
+                gap: 15px;
+
+                >.main__img {
+                    background: #FFF7EE;
+                    border-radius: 15px;
+
+                    >img {
+                        padding: 30px;
+                        width: 211px;
+                    }
+                }
+
+                >.pizza_desc {
+                    color: #B1B1B1;
+                }
+
+                >.pizza__options {
+                    display: flex;
+                    flex-direction: column;
+                    width: 280px;
+
+                    >.main__price_button {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        >h3 {
+                            font-weight: 600;
+
+                            >span {
+                                font-size: 18px;
+                                font-weight: 500;
+                            }
+                        }
+
+                        >button {
+                            font-family: 'Nunito';
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FE5F00;
+                            border: none;
+                            border-radius: 15px;
+                            background: #FFFAF4;
+                            width: 155px;
+                            height: 40px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                background-color: rgb(255, 202, 167);
+                                color: #FFFAF4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .ant-pagination {
+        >.ant-pagination-item {
+            border: 1px solid #EDEDED;
+        }
+
+        >.ant-pagination-item-active {
+            border: none;
+            background-color: #FE5F00;
+
+            >a {
+                color: #fff;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+
+        >.ant-pagination-prev>.ant-pagination-item-link {
+            border-color: #EDEDED;
+            border-radius: 10px;
+
+            &:hover {
+                border-color: #FE5F00;
+            }
+        }
+
+        >.ant-pagination-next>.ant-pagination-item-link {
+            border-color: #EDEDED;
+            border-radius: 10px;
+
+            &:hover {
+                border-color: #FE5F00;
+            }
+        }
+    }
+}
