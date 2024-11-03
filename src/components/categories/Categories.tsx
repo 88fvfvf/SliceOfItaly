@@ -9,7 +9,7 @@ const Categories = () => {
                 <h1>Все пиццы</h1>
                 <ul>
                     <Segmented
-                        options={['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Сырные']}
+                        options={['Пиццы', 'Завтрак', 'Закуски', 'Коктейли', 'Напитки', 'Кофе']}
                         size='large'
                         onChange={(value) => {
                             console.log(value);

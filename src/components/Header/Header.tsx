@@ -1,5 +1,6 @@
 import HeaderLeft from './Left/HeaderLeft'
 import HeaderRight from './Right/HeaderRight'
+import SearchHeader from './searchHeader/SearchHeader'
 
 const Header = () => {
     return (
@@ -11,6 +12,7 @@ const Header = () => {
                 paddingBottom: '45px',
             }}>
             <HeaderLeft />
+            <SearchHeader />
             <HeaderRight />
         </header >
     )

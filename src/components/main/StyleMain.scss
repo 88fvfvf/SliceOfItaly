@@ -21,6 +21,9 @@ main {
                 gap: 15px;
 
                 >.main__img {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     background: #FFF7EE;
                     border-radius: 15px;
 

@@ -1,18 +1,55 @@
-import { Checkbox, Divider, Form, Input, Radio, RadioChangeEvent } from "antd";
+import { Checkbox, Divider, Form, Input, Slider } from "antd";
 import { useState } from "react";
-import './filtering.scss';
 import { FilterRubl } from "../../../../public/svg/icone";
+import './filtering.scss';
 
 const Filtering = () => {
-    const [value, setValue] = useState(1);
-    const onChange = (e: RadioChangeEvent) => {
-        console.log('radio checked', e.target.value);
-        setValue(e.target.value);
+    const [sliderValue, setSliderValue] = useState<{ slider1: number; slider2: number }>({
+        slider1: 0,
+        slider2: 3500
+    });
+
+    const handleSliderChange = (value: number[]) => {
+        setSliderValue({
+            slider1: value[0],
+            slider2: value[1]
+        });
     };
+
+    const handleInput1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(e.target.value);
+        if (!isNaN(newValue)) {
+            setSliderValue(prev => ({
+                ...prev,
+                slider1: newValue
+            }));
+        }
+    };
+
+    const handleInput2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(e.target.value);
+        if (!isNaN(newValue)) {
+            setSliderValue(prev => ({
+                ...prev,
+                slider2: newValue
+            }));
+        }
+    };
+
     return (
         <section style={{ width: '244px' }}>
             <h2>Фильтрация</h2>
             <Form>
+                <div className="filterBy__Type">
+                    <h3>Тип теста:</h3>
+                    <Form.Item>
+                        <Checkbox.Group>
+                            <Checkbox value={1}>Традиционное</Checkbox>
+                            <Checkbox value={2}>Тонкое</Checkbox>
+                        </Checkbox.Group>
+                    </Form.Item>
+                </div>
+                <Divider />
                 <div className="filterBy__Rate_new">
                     <h3>Размеры:</h3>
                     <Form.Item>
@@ -27,8 +64,36 @@ const Filtering = () => {
                 <div className="filterByFromTo">
                     <h3>Цена от и до:</h3>
                     <Form.Item>
-                        <Input suffix={<FilterRubl />} />
-                        <Input suffix={<FilterRubl />} />
+                        <Input
+                            suffix={<FilterRubl />}
+                            value={sliderValue.slider1}
+                            onChange={handleInput1Change}
+                            min={0}
+                            max={3500}
+                        />
+                        <Input
+                            suffix={<FilterRubl />}
+                            value={sliderValue.slider2}
+                            onChange={handleInput2Change}
+                            min={0}
+                            max={3500}
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                        <Slider
+                            range
+                            value={[sliderValue.slider1, sliderValue.slider2]}
+                            onChange={handleSliderChange}
+                            max={3500}
+                            tooltip={{ formatter: null }}
+                            style={{ width: '100%' }}
+                            marks={{ 0: '0₽', 3500: '3500₽' }}
+                            styles={{
+                                track: {
+                                    background: '#ff5e00'
+                                }
+                            }}
+                        />
                     </Form.Item>
                 </div>
                 <Divider />
@@ -45,22 +110,12 @@ const Filtering = () => {
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
-                <Divider />
-                <div className="filterBy__Type">
-                    <h3>Тип теста:</h3>
-                    <Form.Item>
-                        <Radio.Group onChange={onChange} value={value}>
-                            <Radio value={1}>Традиционное</Radio>
-                            <Radio value={2}>Тонкое</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-                </div>
                 <button className="filter__button">
                     <h3>Применить</h3>
                 </button>
             </Form>
         </section>
-    )
-}
+    );
+};
 
-export default Filtering
+export default Filtering;

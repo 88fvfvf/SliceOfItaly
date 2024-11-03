@@ -2,6 +2,9 @@ section {
     display: flex;
     flex-direction: column;
 
+    >h2 {
+        margin-bottom: 10px;
+    }
 }
 
 .filter__button {
@@ -17,7 +20,7 @@ section {
 
 .ant-checkbox-inner,
 .ant-checkbox {
-    background-color: #F1F1F1 !important;
+    background-color: rgb(243 244 246) !important;
 }
 
 .ant-checkbox-inner {
@@ -26,6 +29,7 @@ section {
 
 .ant-checkbox-inner,
 .ant-checkbox:not(.ant-checkbox-disabled) {
+    background-color: rgb(243 244 246) !important;
     border: none !important;
 }
 
@@ -38,13 +42,19 @@ section {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    >.ant-checkbox-wrapper span {
+        font-family: 'Nunito';
+        font-size: 18px;
+        font-weight: 500;
+    }
 }
 
 .ant-form-item-control-input-content {
     display: flex;
     gap: 10px;
 
-    >.ant-input-affix-wrapper{
+    >.ant-input-affix-wrapper {
         border-radius: 10px;
         width: 90px;
         height: 40px;
@@ -77,4 +87,33 @@ section {
     &:hover {
         border-color: #FE5F00;
     }
+}
+
+.ant-slider .ant-slider-handle::after {
+    content: '';
+    box-shadow: 0 0 0 2px #FE5F00 !important;
+
+    &:hover {
+        box-shadow: 0 0 0 2px #FE5F00 !important;
+    }
+}
+
+.ant-slider .ant-slider-handle:hover::after {
+    box-shadow: 0 0 0 2px #FE5F00;
+}
+
+.ant-slider-mark span {
+    font-family: 'Nunito';
+    font-size: 14px;
+    font-weight: 400;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:hover::after,
+:where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:active::after,
+:where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:focus::after {
+    outline: 5px solid #fe5f0082;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-slider:hover .ant-slider-handle::after {
+    box-shadow: 0 0 0 2px #FE5F00;
 }
