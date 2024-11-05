@@ -70,6 +70,7 @@ const Filtering = () => {
                             onChange={handleInput1Change}
                             min={0}
                             max={3500}
+                            maxLength={4}
                         />
                         <Input
                             suffix={<FilterRubl />}
@@ -77,6 +78,7 @@ const Filtering = () => {
                             onChange={handleInput2Change}
                             min={0}
                             max={3500}
+                            maxLength={4}
                         />
                     </Form.Item>
                     <Form.Item>

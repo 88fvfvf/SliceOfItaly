@@ -5,21 +5,24 @@ import './StyleCategories.scss';
 const Categories = () => {
     return (
         <div className='Categories'>
-            <div className="item">
-                <h1>Все пиццы</h1>
-                <ul>
-                    <Segmented
-                        options={['Пиццы', 'Завтрак', 'Закуски', 'Коктейли', 'Напитки', 'Кофе']}
-                        size='large'
-                        onChange={(value) => {
-                            console.log(value);
+            <div className="container">
+                <div className="container__sticky">
+                    <div className="item">
+                        <ul>
+                            <Segmented
+                                options={['Пиццы', 'Завтрак', 'Закуски', 'Коктейли', 'Напитки', 'Кофе']}
+                                size='large'
+                                onChange={(value) => {
+                                    console.log(value);
 
-                        }}
-                    />
-                </ul>
-            </div>
-            <div className="DropDown">
-                <Sort />
+                                }}
+                            />
+                        </ul>
+                    </div>
+                    <div className="DropDown">
+                        <Sort />
+                    </div>
+                </div>
             </div>
         </div>
     );

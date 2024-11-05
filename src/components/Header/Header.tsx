@@ -4,16 +4,17 @@ import SearchHeader from './searchHeader/SearchHeader'
 
 const Header = () => {
     return (
-        <header
-            style={{
+        <header style={{ borderBottom: '1px solid #EDEDED' }}>
+            <div className="container" style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                paddingBottom: '45px',
+                paddingBlock: '10px'
             }}>
-            <HeaderLeft />
-            <SearchHeader />
-            <HeaderRight />
+                <HeaderLeft />
+                <SearchHeader />
+                <HeaderRight />
+            </div>
         </header >
     )
 }

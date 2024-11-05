@@ -6,13 +6,9 @@ export const pizzaApi = createApi({
     reducerPath: 'pizzaApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://671bc37d2c842d92c3813953.mockapi.io/' }),
     endpoints: (builder) => ({
-        fetchPizza: builder.query<IPizza[], number>({
-            query: (page: number = 1, limit: number = 6) => ({
-                url: '/pizza',
-                params: {
-                    page: page,
-                    limit: limit
-                }
+        fetchPizza: builder.query<IPizza[], undefined>({
+            query: () => ({
+                url: '/pizza'
             })
         }),
         fetchCategories: builder.query<ICategories[], undefined>({
