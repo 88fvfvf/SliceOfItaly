@@ -8,7 +8,7 @@ const SkeletonPizza = () => {
             <Skeleton
                 active
                 title={true}
-                paragraph={{ width: [300, 200], rows: 2 }}
+                paragraph={{ width: [250, 200], rows: 2 }}
                 style={{ paddingTop: 30 }}
             />
             <div className="SkeletonButtons">

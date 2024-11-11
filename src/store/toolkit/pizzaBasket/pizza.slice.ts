@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPizza } from "../../../types/IPizza";
+import { IPizza } from "../../../types/Types";
 
 
 interface IState {

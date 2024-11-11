@@ -10,7 +10,7 @@ const Categories = () => {
                     <div className="item">
                         <ul>
                             <Segmented
-                                options={['Пиццы', 'Завтрак', 'Закуски', 'Коктейли', 'Напитки', 'Кофе']}
+                                options={['Пиццы', 'Завтрак', 'Закуски', 'Коктейли', 'Напитки', 'Десерты']}
                                 size='large'
                                 onChange={(value) => {
                                     console.log(value);
