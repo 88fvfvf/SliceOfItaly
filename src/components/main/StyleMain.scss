@@ -9,20 +9,17 @@ main {
 
             .main_block {
                 display: flex;
-                flex-wrap: wrap;
                 justify-content: space-between;
+                flex-wrap: wrap;
                 max-width: 905px;
                 width: 100%;
 
-                >div >.main__pizza,
-                .main__breakfast,
-                .main__snacks,
-                .main__cocktails,
-                .main__drinks,
-                .main__desserts {
+                >div>div {
                     display: flex;
                     flex-wrap: wrap;
                     margin-bottom: 20px;
+                    min-width: 904px;
+                    min-height: 955px;
                     gap: 25px;
                 }
             }

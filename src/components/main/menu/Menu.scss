@@ -20,7 +20,9 @@
             height: 100%;
         }
     }
-
+    >.main__title_pizza{
+        font-size: 17px;
+    }
     >.pizza_desc {
         color: #B1B1B1;
     }
@@ -36,7 +38,6 @@
             align-items: center;
 
             >h3 {
-                font-weight: 600;
 
                 >span {
                     font-size: 18px;

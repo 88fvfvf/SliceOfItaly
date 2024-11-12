@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './page/App';
-import PageBasket from './page/basket/PageBasket';
 import { store } from './store/store';
 
 const rootElement = document.getElementById('root');
@@ -14,7 +13,6 @@ if (rootElement) {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<App />} />
-                    <Route path='/basket' element={<PageBasket />} />
                 </Routes>
             </BrowserRouter>
         </Provider>

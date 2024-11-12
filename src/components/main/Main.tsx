@@ -1,25 +1,27 @@
-import {
-    useFetchBreakFastQuery,
-    useFetchCocktailsQuery,
-    useFetchDessertsQuery,
-    useFetchDrinksQuery,
-    useFetchPizzaQuery,
-    useFetchSnacksQuery
-} from '../../store/api/api.pizza';
-import './StyleMain.scss';
+import { useEffect } from 'react';
+import useSectionsData from '../../hooks/Sections';
+import { sectionsRef } from '../../hooks/SectionsRef';
 import Menu from './menu/Menu';
 import Filtering from './section/filtering';
-import SkeletonPizza from './skeleton/SkeletonPizza';
+import './StyleMain.scss';
 
 const Main = () => {
-    const sections = [
-        { title: 'Пиццы', data: useFetchPizzaQuery(undefined), className: 'main__pizza' },
-        { title: 'Завтраки', data: useFetchBreakFastQuery(undefined), className: 'main__breakfast' },
-        { title: 'Закуски', data: useFetchSnacksQuery(undefined), className: 'main__snacks' },
-        { title: 'Коктейли', data: useFetchCocktailsQuery(undefined), className: 'main__cocktails' },
-        { title: 'Напитки', data: useFetchDrinksQuery(undefined), className: 'main__drinks' },
-        { title: 'Десерты', data: useFetchDessertsQuery(undefined), className: 'main__desserts' },
-    ];
+    const sections = useSectionsData();
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(() => { }, { threshold: 0.7 });
+
+        // Обновляем рефы для секций
+        Object.values(sectionsRef).forEach((section) => {
+            if (section) observer.observe(section);
+        });
+
+        return () => {
+            Object.values(sectionsRef).forEach((section) => {
+                if (section) observer.unobserve(section);
+            });
+        };
+    }, [sections]);
 
     return (
         <main>
@@ -29,13 +31,11 @@ const Main = () => {
                     <div className="main_block">
                         {sections.map(({ title, data, className }) => (
                             <div key={title}>
-                                <h1>{data.isLoading ? '' : title}</h1>
-                                <div className={className}>
-                                    {data.isLoading ? (
-                                        <SkeletonPizza />
-                                    ) : (
-                                        data.data?.map(item => <Menu data={item} key={item.id} />)
-                                    )}
+                                <h1>
+                                    {data.isLoading ? '' : title}
+                                </h1>
+                                <div className={className} id={title} ref={(el) => { sectionsRef[title] = el; }}>
+                                    {data.data?.map(item => <Menu data={item} key={item.id} />)}
                                 </div>
                             </div>
                         ))}
@@ -44,6 +44,6 @@ const Main = () => {
             </div>
         </main>
     );
-}
+};
 
-export default Main
+export default Main;

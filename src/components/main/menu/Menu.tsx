@@ -18,8 +18,8 @@ const Menu = <T extends ProductType>({ data }: IPropsMenu<T>) => {
             </div>
             <div className="pizza_desc">
                 {'description' in data &&
-                    <p>{data?.description.length > 60
-                        ? data.description.slice(0, 60) + '...' : data.description
+                    <p>{data?.description.length > 50
+                        ? data.description.slice(0, 50) + '...' : data.description
                     }
                     </p>
                 }

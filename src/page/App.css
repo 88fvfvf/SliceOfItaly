@@ -6,16 +6,12 @@
 span,
 p,
 strong,
-a {
-  font-family: 'Nunito';
-}
-
+a,
 h1,
 h2,
 h3,
 h4 {
   font-family: 'Nunito';
-  font-weight: 600;
 }
 
 .container {

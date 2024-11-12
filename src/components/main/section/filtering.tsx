@@ -38,10 +38,10 @@ const Filtering = () => {
 
     return (
         <section style={{ width: '244px' }}>
-            <h2>Фильтрация</h2>
+            <h1>Фильтрация</h1>
             <Form>
                 <div className="filterBy__Type">
-                    <h3>Тип теста:</h3>
+                    <h2>Тип теста:</h2>
                     <Form.Item>
                         <Checkbox.Group>
                             <Checkbox value={1}>Традиционное</Checkbox>
@@ -51,7 +51,7 @@ const Filtering = () => {
                 </div>
                 <Divider />
                 <div className="filterBy__Rate_new">
-                    <h3>Размеры:</h3>
+                    <h2>Размеры:</h2>
                     <Form.Item>
                         <Checkbox.Group>
                             <Checkbox value={1}>20 см.</Checkbox>
@@ -62,7 +62,7 @@ const Filtering = () => {
                 </div>
                 <Divider />
                 <div className="filterByFromTo">
-                    <h3>Цена от и до:</h3>
+                    <h2>Цена от и до:</h2>
                     <Form.Item>
                         <Input
                             suffix={<FilterRubl />}
@@ -100,7 +100,7 @@ const Filtering = () => {
                 </div>
                 <Divider />
                 <div className="filterBy__Ingredients">
-                    <h3>Ингредиенты:</h3>
+                    <h2>Ингредиенты:</h2>
                     <Form.Item>
                         <Checkbox.Group>
                             <Checkbox value={1}>Сырный соус</Checkbox>
