@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { pizzaApi } from "./api/api.pizza";
+import filterReducer from './filter/filter.slice';
 
 
 export const store = configureStore({
     reducer: {
         [pizzaApi.reducerPath]: pizzaApi.reducer,
+        filter: filterReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(pizzaApi.middleware)

@@ -1,48 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IBreakfast, ICocktails, IDesserts, IDrinks, IPizza, ISnacks } from '../../types/Types';
+import { ICategories, Item } from '../../types/Types';
 
 export const pizzaApi = createApi({
     reducerPath: 'pizzaApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://api-nine-flax-84.vercel.app/api/server' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://api-git-main-88fvfvfs-projects.vercel.app/api/' }),
     endpoints: (builder) => ({
-        fetchPizza: builder.query<IPizza[], undefined>({
+        fetchProducts: builder.query<Item, void>({
             query: () => ({
-                url: '/pizza'
+                url: '/products'
             })
         }),
-        fetchBreakFast: builder.query<IBreakfast[], undefined>({
+        fetchCategories: builder.query<ICategories[], void>({
             query: () => ({
-                url: '/breakfast'
+                url: '/categories'
             })
-        }),
-        fetchSnacks: builder.query<ISnacks[], undefined>({
-            query: () => ({
-                url: '/snacks'
-            })
-        }),
-        fetchCocktails: builder.query<ICocktails[], undefined>({
-            query: () => ({
-                url: '/cocktails'
-            })
-        }),
-        fetchDrinks: builder.query<IDrinks[], undefined>({
-            query: () => ({
-                url: '/drinks'
-            })
-        }),
-        fetchDesserts: builder.query<IDesserts[], undefined>({
-            query: () => ({
-                url: '/desserts'
-            })
-        }),
+        })
     })
 })
 
-export const {
-    useFetchPizzaQuery,
-    useFetchBreakFastQuery,
-    useFetchSnacksQuery,
-    useFetchCocktailsQuery,
-    useFetchDrinksQuery,
-    useFetchDessertsQuery
-} = pizzaApi
+export const { useFetchProductsQuery, useFetchCategoriesQuery } = pizzaApi

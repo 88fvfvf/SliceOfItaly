@@ -1,11 +1,18 @@
 import { Segmented } from 'antd';
-import Sort from './sort/Sort';
-import './StyleCategories.scss';
 import { useEffect, useState } from 'react';
 import { sectionsRef } from '../../hooks/SectionsRef';
+import Sort from './sort/Sort';
+import './StyleCategories.scss';
+import { useFetchCategoriesQuery } from '../../store/api/api.pizza';
+
+interface IOptions {
+    label: string; // для отображения текста
+    value: string; // уникальное значение
+}
 
 const Categories = () => {
     const [activeSegment, setActiveSegment] = useState('Пиццы');
+    const { data } = useFetchCategoriesQuery();
 
     const handleSegmentChange = (value: string) => {
         setActiveSegment(value);
@@ -13,15 +20,20 @@ const Categories = () => {
     };
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSegment(entry.target.id);
-                }
-            });
-        }, { threshold: 0.7 });
+        if (!data) return; // Ждём загрузки данных
 
-        // Обновляем рефы для секций
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSegment(entry.target.id);
+                    }
+                });
+            },
+            { threshold: 0.7 }
+        );
+
+        // Наблюдаем за секциями
         Object.values(sectionsRef).forEach((section) => {
             if (section) observer.observe(section);
         });
@@ -31,18 +43,26 @@ const Categories = () => {
                 if (section) observer.unobserve(section);
             });
         };
-    }, []);
+    }, [data]); // Завязываемся на `data`
+
+
+    const options = data
+        ? data.map((item): IOptions => ({
+            label: item.categories, // Отображаемое имя
+            value: item.categories, // Уникальное значение
+        }))
+        : [];
 
     return (
-        <div className='Categories'>
+        <div className="Categories">
             <div className="container">
                 <div className="container__sticky">
                     <div className="item">
                         <ul>
                             <Segmented
-                                options={['Пиццы', 'Завтраки', 'Закуски', 'Коктейли', 'Напитки', 'Десерты']}
+                                options={options}
                                 value={activeSegment}
-                                size='large'
+                                size="large"
                                 onChange={handleSegmentChange}
                             />
                         </ul>

@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
-import useSectionsData from '../../hooks/Sections';
-import { sectionsRef } from '../../hooks/SectionsRef';
+import { useAppSelector } from '../../hooks/hooks';
+import { useFetchCategoriesQuery, useFetchProductsQuery } from '../../store/api/api.pizza';
 import Menu from './menu/Menu';
 import Filtering from './section/filtering';
 import './StyleMain.scss';
+import { sectionsRef } from '../../hooks/SectionsRef';
 
 const Main = () => {
-    const sections = useSectionsData();
+    const { data: options } = useFetchCategoriesQuery();
+    const { products } = useAppSelector((state) => state.filter);
+    useFetchProductsQuery(); // Запуск запроса
+    const arrays = Object.values(products);
 
     useEffect(() => {
         const observer = new IntersectionObserver(() => { }, { threshold: 0.7 });
@@ -21,7 +25,7 @@ const Main = () => {
                 if (section) observer.unobserve(section);
             });
         };
-    }, [sections]);
+    }, [options]);
 
     return (
         <main>
@@ -29,16 +33,18 @@ const Main = () => {
                 <div className="filter__main_block">
                     <Filtering />
                     <div className="main_block">
-                        {sections.map(({ title, data, className }) => (
-                            <div key={title}>
-                                <h1>
-                                    {data.isLoading ? '' : title}
-                                </h1>
-                                <div className={className} id={title} ref={(el) => { sectionsRef[title] = el; }}>
-                                    {data.data?.map(item => <Menu data={item} key={item.id} />)}
+                        {options &&
+                            arrays.map((array, index) => (
+                                <div key={index}>
+                                    <h1>{options[index]?.categories || 'Без категории'}</h1>
+                                    <div
+                                        id={options[index]?.categories}
+                                        ref={(el) => { sectionsRef[options[index]?.categories] = el }}
+                                    >
+                                        <Menu data={array} key={index} />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                 </div>
             </div>

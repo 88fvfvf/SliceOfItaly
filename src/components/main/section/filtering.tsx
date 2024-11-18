@@ -1,5 +1,5 @@
 import { Checkbox, Divider, Form, Input, Slider } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FilterRubl } from "../../../../public/svg/icone";
 import './filtering.scss';
 
@@ -35,28 +35,35 @@ const Filtering = () => {
             }));
         }
     };
+    const handleSubmit = (values: React.FormEvent<HTMLFormElement>) => {
+        const filter = {
+            ...values,
+            ...sliderValue
+        }
+        console.log(filter);
+    }
 
     return (
         <section style={{ width: '244px' }}>
             <h1>Фильтрация</h1>
-            <Form>
+            <Form onFinish={(values) => handleSubmit(values)}>
                 <div className="filterBy__Type">
                     <h2>Тип теста:</h2>
-                    <Form.Item>
+                    <Form.Item name={"Types"}>
                         <Checkbox.Group>
-                            <Checkbox value={1}>Традиционное</Checkbox>
-                            <Checkbox value={2}>Тонкое</Checkbox>
+                            <Checkbox value={'Традиционное'}>Традиционное</Checkbox>
+                            <Checkbox value={'Тонкое'}>Тонкое</Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
                 <Divider />
                 <div className="filterBy__Rate_new">
                     <h2>Размеры:</h2>
-                    <Form.Item>
+                    <Form.Item name={"Sizes"}>
                         <Checkbox.Group>
-                            <Checkbox value={1}>20 см.</Checkbox>
-                            <Checkbox value={2}>30 см.</Checkbox>
-                            <Checkbox value={3}>40 см.</Checkbox>
+                            <Checkbox value={'20'}>20 см.</Checkbox>
+                            <Checkbox value={'30'}>30 см.</Checkbox>
+                            <Checkbox value={'40'}>40 см.</Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
@@ -101,18 +108,18 @@ const Filtering = () => {
                 <Divider />
                 <div className="filterBy__Ingredients">
                     <h2>Ингредиенты:</h2>
-                    <Form.Item>
+                    <Form.Item name={"Ingredients"}>
                         <Checkbox.Group>
-                            <Checkbox value={1}>Сырный соус</Checkbox>
-                            <Checkbox value={2}>Моцарелла</Checkbox>
-                            <Checkbox value={3}>Чеснок</Checkbox>
-                            <Checkbox value={4}>Солённые огурчики</Checkbox>
-                            <Checkbox value={5}>Красный лук</Checkbox>
-                            <Checkbox value={6}>Томаты</Checkbox>
+                            <Checkbox value={'Сырный соус'}>Сырный соус</Checkbox>
+                            <Checkbox value={'Моцарелла'}>Моцарелла</Checkbox>
+                            <Checkbox value={'Чеснок'}>Чеснок</Checkbox>
+                            <Checkbox value={'Солённые огурчики'}>Солённые огурчики</Checkbox>
+                            <Checkbox value={'Красный лук'}>Красный лук</Checkbox>
+                            <Checkbox value={'Томаты'}>Томаты</Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
-                <button className="filter__button">
+                <button className="filter__button" type="submit">
                     <h3>Применить</h3>
                 </button>
             </Form>

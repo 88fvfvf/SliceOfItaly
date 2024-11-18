@@ -33,3 +33,10 @@ export interface IBreakfast extends IProduct { }
 export interface ISnacks extends IProduct { }
 export interface ICocktails extends IProduct { }
 export interface IDesserts extends IProduct { }
+
+export type Item = IPizza | IBreakfast | ISnacks | ICocktails | IDrinks | IDesserts;
+
+export interface ICategories {
+    id: number
+    categories: string
+}
