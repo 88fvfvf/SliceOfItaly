@@ -3,14 +3,14 @@ import './Menu.scss';
 
 
 interface IPropsMenu {
-    data: Item[]
+    data: Item[],
 }
 
 const Menu = ({ data }: IPropsMenu) => {
     return (
         <>
             {data.map(data => (
-                <div className="main__menu">
+                <div className="main__menu" key={data.id}>
                     <div className="main__img">
                         <img src={data?.images[0]} alt={data?.title} />
                     </div>

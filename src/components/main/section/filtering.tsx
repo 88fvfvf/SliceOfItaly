@@ -4,15 +4,15 @@ import { FilterRubl } from "../../../../public/svg/icone";
 import './filtering.scss';
 
 const Filtering = () => {
-    const [sliderValue, setSliderValue] = useState<{ slider1: number; slider2: number }>({
-        slider1: 0,
-        slider2: 3500
+    const [sliderValue, setSliderValue] = useState<{ FromSlider: number; ToSlider: number }>({
+        FromSlider: 0,
+        ToSlider: 3500
     });
 
     const handleSliderChange = (value: number[]) => {
         setSliderValue({
-            slider1: value[0],
-            slider2: value[1]
+            FromSlider: value[0],
+            ToSlider: value[1]
         });
     };
 
@@ -21,7 +21,7 @@ const Filtering = () => {
         if (!isNaN(newValue)) {
             setSliderValue(prev => ({
                 ...prev,
-                slider1: newValue
+                FromSlider: newValue
             }));
         }
     };
@@ -31,7 +31,7 @@ const Filtering = () => {
         if (!isNaN(newValue)) {
             setSliderValue(prev => ({
                 ...prev,
-                slider2: newValue
+                ToSlider: newValue
             }));
         }
     };
@@ -73,7 +73,7 @@ const Filtering = () => {
                     <Form.Item>
                         <Input
                             suffix={<FilterRubl />}
-                            value={sliderValue.slider1}
+                            value={sliderValue.FromSlider}
                             onChange={handleInput1Change}
                             min={0}
                             max={3500}
@@ -81,7 +81,7 @@ const Filtering = () => {
                         />
                         <Input
                             suffix={<FilterRubl />}
-                            value={sliderValue.slider2}
+                            value={sliderValue.ToSlider}
                             onChange={handleInput2Change}
                             min={0}
                             max={3500}
@@ -91,7 +91,7 @@ const Filtering = () => {
                     <Form.Item>
                         <Slider
                             range
-                            value={[sliderValue.slider1, sliderValue.slider2]}
+                            value={[sliderValue.FromSlider, sliderValue.ToSlider]}
                             onChange={handleSliderChange}
                             max={3500}
                             tooltip={{ formatter: null }}

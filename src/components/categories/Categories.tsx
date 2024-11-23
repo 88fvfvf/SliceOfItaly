@@ -1,4 +1,4 @@
-import { Segmented } from 'antd';
+import { Segmented, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
 import { sectionsRef } from '../../hooks/SectionsRef';
 import Sort from './sort/Sort';
@@ -12,8 +12,7 @@ interface IOptions {
 
 const Categories = () => {
     const [activeSegment, setActiveSegment] = useState('Пиццы');
-    const { data } = useFetchCategoriesQuery();
-
+    const { data, isLoading } = useFetchCategoriesQuery();
     const handleSegmentChange = (value: string) => {
         setActiveSegment(value);
         sectionsRef[value]?.scrollIntoView({ behavior: 'smooth' });
@@ -53,18 +52,26 @@ const Categories = () => {
         }))
         : [];
 
+
     return (
         <div className="Categories">
             <div className="container">
                 <div className="container__sticky">
                     <div className="item">
                         <ul>
-                            <Segmented
-                                options={options}
-                                value={activeSegment}
-                                size="large"
-                                onChange={handleSegmentChange}
-                            />
+                            {isLoading
+                                ? (
+                                    <Skeleton.Button active style={{ borderRadius: 20, width: 580, height: 56 }} />
+                                )
+                                : (
+                                    <Segmented
+                                        options={options}
+                                        value={activeSegment}
+                                        size="large"
+                                        onChange={handleSegmentChange}
+                                    />
+                                )
+                            }
                         </ul>
                     </div>
                     <div className="DropDown">

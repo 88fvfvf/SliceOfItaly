@@ -5,13 +5,15 @@ import Menu from './menu/Menu';
 import Filtering from './section/filtering';
 import './StyleMain.scss';
 import { sectionsRef } from '../../hooks/SectionsRef';
+import SkeletonPizza from './skeleton/SkeletonPizza';
 
 const Main = () => {
     const { data: options } = useFetchCategoriesQuery();
     const { products } = useAppSelector((state) => state.filter);
-    useFetchProductsQuery(); // Запуск запроса
+    const { isLoading } = useFetchProductsQuery(); // Запуск запроса
     const arrays = Object.values(products);
-
+    console.log(products);
+    
     useEffect(() => {
         const observer = new IntersectionObserver(() => { }, { threshold: 0.7 });
 
@@ -32,20 +34,28 @@ const Main = () => {
             <div className="container">
                 <div className="filter__main_block">
                     <Filtering />
-                    <div className="main_block">
-                        {options &&
-                            arrays.map((array, index) => (
-                                <div key={index}>
-                                    <h1>{options[index]?.categories || 'Без категории'}</h1>
-                                    <div
-                                        id={options[index]?.categories}
-                                        ref={(el) => { sectionsRef[options[index]?.categories] = el }}
-                                    >
-                                        <Menu data={array} key={index} />
-                                    </div>
+                    {
+                        isLoading
+                            ? (
+                                <SkeletonPizza />
+                            ) : (
+                                <div className="main_block">
+                                    {options &&
+                                        arrays.map((array, index) => (
+                                            <div key={index}>
+                                                <h1>{options[index]?.categories || 'Без категории'}</h1>
+                                                <div
+                                                    id={options[index]?.categories}
+                                                    ref={(el) => { sectionsRef[options[index]?.categories] = el }}
+                                                >
+                                                    <Menu data={array} key={index} />
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                            ))}
-                    </div>
+                            )
+                    }
                 </div>
             </div>
         </main>

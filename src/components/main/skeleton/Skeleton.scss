@@ -1,35 +1,42 @@
-.SkeletonPizza {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 285px;
-    width: 100%;
-    gap: 15px;
-
-    >.SkeletonButtons {
+.SkeletonBlock {
+    .SkeletonPizza {
         display: flex;
         justify-content: space-between;
-        width: 250px;
+        flex-wrap: wrap;
+        padding-top: 35px;
+        max-width: 905px;
+        width: 100%;
 
-        >.ant-skeleton>.addButton {
-            width: 105px !important;
+        >div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            >.SkeletonButtons {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 20px;
+                width: 250px;
+
+                >.ant-skeleton>.addButton {
+                    width: 105px !important;
+                }
+            }
+
+            >.ant-skeleton {
+                .ant-skeleton-image {
+                    border-radius: 50%;
+                    width: 211px;
+                    height: 211px;
+                }
+
+                >.ant-skeleton-content h3 {
+                    border-radius: 10px;
+                    width: 257px !important;
+                    height: 30px;
+                }
+
+            }
         }
-    }
-
-    >.ant-skeleton {
-        .ant-skeleton-image {
-            border-radius: 50%;
-            width: 211px;
-            height: 211px;
-        }
-
-        >.ant-skeleton-content h3 {
-            border-radius: 10px;
-            width: 257px !important;
-            height: 30px;
-        }
-
     }
 }
