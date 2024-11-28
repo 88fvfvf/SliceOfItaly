@@ -2,12 +2,13 @@ import { Checkbox, Divider, Form, Input, Slider } from "antd";
 import React, { useState } from "react";
 import { FilterRubl } from "../../../../public/svg/icone";
 import { useAppDispatch } from "../../../hooks/hooks";
+import { useFetchIngredientsQuery } from "../../../store/api/api.pizza";
 import { applyFilter, IFilter } from "../../../store/filter/filter.slice";
 import './filtering.scss';
-import { useFetchIngredientsQuery } from "../../../store/api/api.pizza";
+import LoadingIng from "./loading/LoadingIng";
 
 const Filtering = () => {
-    const { data } = useFetchIngredientsQuery()
+    const { data, isLoading } = useFetchIngredientsQuery()
     const [sliderValue, setSliderValue] = useState<{ FromSlider: number; ToSlider: number }>({
         FromSlider: 0,
         ToSlider: 3500
@@ -119,11 +120,18 @@ const Filtering = () => {
                     <h2>Ингредиенты:</h2>
                     <Form.Item name={"Ingredients"} className="ingredients">
                         <Checkbox.Group>
-                            {data?.map((ingredients) => (
-                                <Checkbox value={ingredients.ingredients} key={ingredients.id}>
-                                    {ingredients.ingredients}
-                                </Checkbox>
-                            ))}
+                            {
+                                isLoading
+                                    ? (
+                                        <LoadingIng />
+                                    ) : (
+                                        data?.map((ingredients) => (
+                                            <Checkbox value={ingredients.ingredients} key={ingredients.id}>
+                                                {ingredients.ingredients}
+                                            </Checkbox>
+                                        ))
+                                    )
+                            }
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
