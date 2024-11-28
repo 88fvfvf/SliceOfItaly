@@ -1,13 +1,18 @@
 import { Checkbox, Divider, Form, Input, Slider } from "antd";
 import React, { useState } from "react";
 import { FilterRubl } from "../../../../public/svg/icone";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { applyFilter, IFilter } from "../../../store/filter/filter.slice";
 import './filtering.scss';
+import { useFetchIngredientsQuery } from "../../../store/api/api.pizza";
 
 const Filtering = () => {
+    const { data } = useFetchIngredientsQuery()
     const [sliderValue, setSliderValue] = useState<{ FromSlider: number; ToSlider: number }>({
         FromSlider: 0,
         ToSlider: 3500
     });
+    const dispatch = useAppDispatch()
 
     const handleSliderChange = (value: number[]) => {
         setSliderValue({
@@ -35,13 +40,17 @@ const Filtering = () => {
             }));
         }
     };
-    const handleSubmit = (values: React.FormEvent<HTMLFormElement>) => {
-        const filter = {
-            ...values,
-            ...sliderValue
-        }
-        console.log(filter);
-    }
+    const handleSubmit = (values: any) => {
+        const filter: IFilter = {
+            Ingredients: values.Ingredients || [], // Предполагаем, что это массив
+            Sizes: values.Sizes || [], // Предполагаем, что это массив
+            Types: values.Types || [], // Предполагаем, что это массив
+            FromSlider: sliderValue.FromSlider,
+            ToSlider: sliderValue.ToSlider,
+        };
+
+        dispatch(applyFilter(filter));
+    };
 
     return (
         <section style={{ width: '244px' }}>
@@ -61,9 +70,9 @@ const Filtering = () => {
                     <h2>Размеры:</h2>
                     <Form.Item name={"Sizes"}>
                         <Checkbox.Group>
-                            <Checkbox value={'20'}>20 см.</Checkbox>
+                            <Checkbox value={'25'}>25 см.</Checkbox>
                             <Checkbox value={'30'}>30 см.</Checkbox>
-                            <Checkbox value={'40'}>40 см.</Checkbox>
+                            <Checkbox value={'35'}>35 см.</Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
@@ -108,14 +117,13 @@ const Filtering = () => {
                 <Divider />
                 <div className="filterBy__Ingredients">
                     <h2>Ингредиенты:</h2>
-                    <Form.Item name={"Ingredients"}>
+                    <Form.Item name={"Ingredients"} className="ingredients">
                         <Checkbox.Group>
-                            <Checkbox value={'Сырный соус'}>Сырный соус</Checkbox>
-                            <Checkbox value={'Моцарелла'}>Моцарелла</Checkbox>
-                            <Checkbox value={'Чеснок'}>Чеснок</Checkbox>
-                            <Checkbox value={'Солённые огурчики'}>Солённые огурчики</Checkbox>
-                            <Checkbox value={'Красный лук'}>Красный лук</Checkbox>
-                            <Checkbox value={'Томаты'}>Томаты</Checkbox>
+                            {data?.map((ingredients) => (
+                                <Checkbox value={ingredients.ingredients} key={ingredients.id}>
+                                    {ingredients.ingredients}
+                                </Checkbox>
+                            ))}
                         </Checkbox.Group>
                     </Form.Item>
                 </div>

@@ -3,26 +3,30 @@ import { useEffect, useState } from 'react';
 import { sectionsRef } from '../../hooks/SectionsRef';
 import Sort from './sort/Sort';
 import './StyleCategories.scss';
-import { useFetchCategoriesQuery } from '../../store/api/api.pizza';
-
-interface IOptions {
-    label: string; // для отображения текста
-    value: string; // уникальное значение
-}
+import { useFetchProductsQuery } from '../../store/api/api.pizza';
+import { useAppSelector } from '../../hooks/hooks';
 
 const Categories = () => {
     const [activeSegment, setActiveSegment] = useState('Пиццы');
-    const { data, isLoading } = useFetchCategoriesQuery();
+    const { isLoading } = useFetchProductsQuery();
+    const [isScrolling, setIsScrolling] = useState(false);
+    const { products } = useAppSelector((state) => state.filter);
+    const categories = Object.keys(products)
+
     const handleSegmentChange = (value: string) => {
+        setIsScrolling(true); // Устанавливаем состояние скроллинга
         setActiveSegment(value);
         sectionsRef[value]?.scrollIntoView({ behavior: 'smooth' });
+
+        setTimeout(() => setIsScrolling(false), 500); // Снимаем флаг после завершения скролла
     };
 
     useEffect(() => {
-        if (!data) return; // Ждём загрузки данных
+        if (!categories) return; // Ждём загрузки данных
 
         const observer = new IntersectionObserver(
             (entries) => {
+                if (isScrolling) return; // Если мы инициировали скролл, игнорируем IntersectionObserver
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         setActiveSegment(entry.target.id);
@@ -42,16 +46,7 @@ const Categories = () => {
                 if (section) observer.unobserve(section);
             });
         };
-    }, [data]); // Завязываемся на `data`
-
-
-    const options = data
-        ? data.map((item): IOptions => ({
-            label: item.categories, // Отображаемое имя
-            value: item.categories, // Уникальное значение
-        }))
-        : [];
-
+    }, [categories, isScrolling]); // Завязываемся на `data`
 
     return (
         <div className="Categories">
@@ -64,12 +59,17 @@ const Categories = () => {
                                     <Skeleton.Button active style={{ borderRadius: 20, width: 580, height: 56 }} />
                                 )
                                 : (
-                                    <Segmented
-                                        options={options}
-                                        value={activeSegment}
-                                        size="large"
-                                        onChange={handleSegmentChange}
-                                    />
+                                    Array.isArray(categories) && categories.length > 0
+                                        ? (
+                                            <Segmented
+                                                options={categories}
+                                                value={activeSegment}
+                                                size="large"
+                                                onChange={handleSegmentChange}
+                                            />
+                                        ) : (
+                                            null
+                                        )
                                 )
                             }
                         </ul>

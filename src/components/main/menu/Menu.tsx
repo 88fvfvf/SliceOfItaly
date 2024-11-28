@@ -1,9 +1,9 @@
-import { Item } from '../../../types/Types';
+import { IProducts } from '../../../types/Types';
 import './Menu.scss';
 
 
 interface IPropsMenu {
-    data: Item[],
+    data: IProducts[],
 }
 
 const Menu = ({ data }: IPropsMenu) => {
@@ -19,8 +19,12 @@ const Menu = ({ data }: IPropsMenu) => {
                     </div>
                     <div className="pizza_desc">
                         {'description' in data &&
-                            <p>{data?.description.length > 50
-                                ? data.description.slice(0, 50) + '...' : data.description
+                            <p>{data.description ? (
+                                data?.description.length > 50
+                                    ? data.description.slice(0, 50) + '...' : data.description
+                            ) : (
+                                <p>...</p>
+                            )
                             }
                             </p>
                         }
