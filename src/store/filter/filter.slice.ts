@@ -12,8 +12,8 @@ export interface IFilter {
     FromSlider: number,
     ToSlider: number,
     Ingredients: string[] | undefined,
-    Sizes: string[],
-    Types: []
+    Sizes: string[] | undefined,
+    Types: string[] | undefined
 }
 
 const initialState: ProductState = {
@@ -28,31 +28,30 @@ const filterSlice = createSlice({
             // 1. Start with original products
             let filteredProducts = state.originalProducts;
 
-            // 2. Apply price filter
-            filteredProducts = filteredProducts.filter(
-                (product) => product.price >= payload.FromSlider && product.price <= payload.ToSlider
-            );
-
-            // 3. Apply Ingredients filter (if provided)
-            if (payload.Ingredients?.length) {
-                filteredProducts = filteredProducts.filter((product) =>
-                    payload.Ingredients!.every((ingredient) => product.description?.toLowerCase()?.includes(ingredient.toLowerCase()))
-                );
-            }
-
-            // 4. Apply Sizes filter (if provided)
-            if (payload.Sizes?.length) {
-                filteredProducts = filteredProducts.filter((product) =>
-                    payload.Sizes!.every((sizes) => product.sizes?.includes(sizes))
-                );
-            }
-
-            if (payload.Types?.length) {
-                filteredProducts = filteredProducts.filter((product) =>
-                    payload.Types!.every((types) => product.types?.includes(types))
-                )
-            }
-
+            filteredProducts = filteredProducts.filter((product) => {
+                // Проверка диапазона цены
+                const matchesPrice = product.price >= payload.FromSlider && product.price <= payload.ToSlider;
+            
+                // Проверка ингредиентов
+                const matchesIngredients = payload.Ingredients?.length 
+                    ? payload.Ingredients.every((ingredient) => 
+                        product.description?.toLowerCase()?.includes(ingredient.toLowerCase())
+                      ) 
+                    : true;
+            
+                // Проверка размеров
+                const matchesSizes = payload.Sizes?.length 
+                    ? payload.Sizes.every((size) => product.sizes?.includes(size)) 
+                    : true;
+            
+                // Проверка типов
+                const matchesTypes = payload.Types?.length 
+                    ? payload.Types.every((type) => product.types?.includes(type)) 
+                    : true;
+            
+                return matchesPrice && matchesIngredients && matchesSizes && matchesTypes;
+            });
+            
             // 5. Regroup filtered products by categories
             state.products = filteredProducts.reduce<Record<string, IProducts[]>>((acc, product) => {
                 if (!acc[product.category]) {

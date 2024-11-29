@@ -49,7 +49,6 @@ const Filtering = () => {
             FromSlider: sliderValue.FromSlider,
             ToSlider: sliderValue.ToSlider,
         };
-
         dispatch(applyFilter(filter));
     };
 
