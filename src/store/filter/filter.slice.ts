@@ -31,27 +31,27 @@ const filterSlice = createSlice({
             filteredProducts = filteredProducts.filter((product) => {
                 // Проверка диапазона цены
                 const matchesPrice = product.price >= payload.FromSlider && product.price <= payload.ToSlider;
-            
+
                 // Проверка ингредиентов
-                const matchesIngredients = payload.Ingredients?.length 
-                    ? payload.Ingredients.every((ingredient) => 
+                const matchesIngredients = payload.Ingredients?.length
+                    ? payload.Ingredients.every((ingredient) =>
                         product.description?.toLowerCase()?.includes(ingredient.toLowerCase())
-                      ) 
+                    )
                     : true;
-            
+
                 // Проверка размеров
-                const matchesSizes = payload.Sizes?.length 
-                    ? payload.Sizes.every((size) => product.sizes?.includes(size)) 
+                const matchesSizes = payload.Sizes?.length
+                    ? payload.Sizes.every((size) => product.sizes?.includes(size))
                     : true;
-            
+
                 // Проверка типов
-                const matchesTypes = payload.Types?.length 
-                    ? payload.Types.every((type) => product.types?.includes(type)) 
+                const matchesTypes = payload.Types?.length
+                    ? payload.Types.every((type) => product.types?.includes(type))
                     : true;
-            
+
                 return matchesPrice && matchesIngredients && matchesSizes && matchesTypes;
             });
-            
+
             // 5. Regroup filtered products by categories
             state.products = filteredProducts.reduce<Record<string, IProducts[]>>((acc, product) => {
                 if (!acc[product.category]) {

@@ -1,0 +1,30 @@
+.Product {
+    width: 100%;
+    margin-inline: auto;
+
+    .container {
+
+        >.Breadcrumb {
+            padding-top: 30px;
+
+            ol,
+            a {
+                display: flex;
+                list-style: none;
+                text-decoration: none;
+                color: #aaa;
+                gap: 10px;
+
+                >li:hover {
+                    transition: all 0.3s ease;
+                    color: #FE5F1E;
+                    cursor: pointer;
+                }
+
+                >.active {
+                    color: #FE5F1E;
+                }
+            }
+        }
+    }
+}

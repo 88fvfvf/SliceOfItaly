@@ -1,0 +1,167 @@
+.ProductsBlock {
+    display: flex;
+    padding-top: 50px;
+    max-width: 1247px;
+    width: 100%;
+    gap: 50px;
+
+    >.img_product {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFF7EE;
+        border-radius: 20px;
+        width: 560px;
+        height: 560px;
+        padding: 30px;
+
+        >.img {
+            transition: all 0.3s ease;
+            width: 350px;
+            height: 350px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+            &[data-size="25 см"] {
+                width: 350px;
+                height: 350px;
+            }
+
+            &[data-size="30 см"] {
+                width: 420px;
+                height: 420px;
+            }
+
+            &[data-size="35 см"] {
+                width: 500px;
+                height: 500px;
+            }
+        }
+    }
+
+    >.product_details {
+        display: flex;
+        flex-direction: column;
+        max-width: 460px;
+        width: 100%;
+        gap: 20px;
+
+        >.product_title {
+            >.product_about span {
+                color: #777;
+                font-size: 14px;
+            }
+
+            >h1 {
+                color: #373737;
+            }
+        }
+
+        >button {
+            background-color: #FE5F00;
+            border-radius: 18px;
+            border: none;
+            color: #fff;
+            width: 244px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        >.product_addIngredients {
+            display: flex;
+            flex-wrap: wrap;
+            overflow: auto;
+            max-width: 450px;
+            max-height: 290px;
+            padding: 5px;
+            gap: 10px;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(255, 94, 0);
+                cursor: n-resize;
+                border-radius: 10px;
+            }
+
+            >.addIngredients {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                box-shadow: rgba(6, 5, 50, 0.12) 0px 4px 10px;
+                border: 1px solid transparent;
+                transition: all 0.2s ease;
+                border-radius: 15px;
+                width: 125px;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: rgba(6, 5, 50, 0.12) 0px 0px 8px;
+                }
+
+
+                >.addIngredients_name {
+                    display: flex;
+                    position: relative;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    >p {
+                        text-align: center;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            >.active {
+                border: 1px solid #FE5F00 !important;
+                border-radius: 15px;
+            }
+
+        }
+
+        >.product_segment {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            >div {
+                >.ant-segmented {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 30px !important;
+                    font-family: "Nunito";
+                    font-weight: 500;
+                    font-size: 16px !important;
+
+
+                    .ant-segmented-item,
+                    .ant-segmented-item-selected {
+                        padding: 5px;
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    >.product_segment {
+        width: 420px;
+    }
+
+}

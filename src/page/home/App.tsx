@@ -1,8 +1,7 @@
-import Header from '../components/Header/Header';
-import Categories from '../components/categories/Categories';
-import Main from '../components/main/Main';
+import Categories from '../../components/categories/Categories';
+import Header from '../../components/Header/Header';
+import Main from '../../components/main/Main';
 import './App.css';
-
 
 function App() {
   return (

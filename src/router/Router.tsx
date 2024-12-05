@@ -1,11 +1,18 @@
-import { BrowserRouter as AppRouter, Route } from 'react-router-dom';
-import App from '../page/App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import App from '../page/home/App';
+import ProductPage from '../page/productPage/ProductPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 const Router = () => {
     return (
-        <AppRouter>
-            <Route path='/' element={<App />} />
-        </AppRouter>
+        <HelmetProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<App />} />
+                    <Route path='/product/:title' element={<ProductPage />} />
+                </Routes>
+            </BrowserRouter>
+        </HelmetProvider>
     );
 };
 

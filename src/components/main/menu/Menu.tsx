@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IProducts } from '../../../types/Types';
 import './Menu.scss';
 
@@ -12,7 +13,7 @@ const Menu = ({ data }: IPropsMenu) => {
             {data.map(data => (
                 <div className="main__menu" key={data.id}>
                     <div className="main__img">
-                        <img src={data?.images[0]} alt={data?.title} />
+                        <img src={data?.images[0]} alt={data?.title} loading="lazy"/>
                     </div>
                     <div className="main__title_pizza">
                         <h3>{data?.title}</h3>
@@ -32,7 +33,11 @@ const Menu = ({ data }: IPropsMenu) => {
                     <div className="pizza__options">
                         <div className="main__price_button">
                             <h3><span>от</span> {data?.price} ₽</h3>
-                            <button><span>+</span> Добавить</button>
+                            <Link to={`/product/${data.title}`}>
+                                <button>
+                                    <span>+</span> Добавить
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

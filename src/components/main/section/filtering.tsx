@@ -70,9 +70,9 @@ const Filtering = () => {
                     <h2>Размеры:</h2>
                     <Form.Item name={"Sizes"}>
                         <Checkbox.Group>
-                            <Checkbox value={'25'}>25 см.</Checkbox>
-                            <Checkbox value={'30'}>30 см.</Checkbox>
-                            <Checkbox value={'35'}>35 см.</Checkbox>
+                            <Checkbox value={'25 см'}>25 см.</Checkbox>
+                            <Checkbox value={'30 см'}>30 см.</Checkbox>
+                            <Checkbox value={'35 см'}>35 см.</Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
                 </div>

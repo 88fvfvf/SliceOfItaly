@@ -1,0 +1,60 @@
+.ant-drawer-body {
+    >.basket {
+        display: flex;
+        justify-content: space-between;
+        background: white;
+        padding: 10px 15px;
+        flex-direction: column;
+
+        .basket_details {
+            display: flex;
+            margin-bottom: 10px;
+            gap: 10px;
+
+            >.details p {
+                display: flex;
+                flex-direction: column;
+                color: rgb(92, 99, 112);
+                font-size: 12px;
+                width: 260px;
+            }
+
+            >.delete_basket {
+                padding-left: 30px;
+            }
+        }
+
+        >.current {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgb(226, 226, 233);
+            font-size: 16px;
+            font-weight: 600;
+            padding-block: 15px;
+
+            >.counter {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background: rgb(243, 243, 247);
+                border-radius: 50px;
+                color: rgb(92, 99, 112);
+                width: 96px;
+                height: 32px;
+
+                >svg:hover {
+                    fill: #000;
+                }
+            }
+        }
+    }
+}
+
+.ant-drawer-content {
+    background: rgb(243, 243, 247) !important;
+}
+
+.ant-drawer-body {
+    padding: 0 !important;
+}

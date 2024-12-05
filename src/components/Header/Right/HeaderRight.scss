@@ -5,11 +5,13 @@
     background: #FE5F1E;
     border-radius: 20px;
     font-family: "Nunito";
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
-    width: 130px;
+    transition: all 0.3s ease;
+    width: 140px;
     height: 40px;
-    gap: 10px;
+    cursor: pointer;
+    gap: 7px;
 
     span {
         color: #FFF;
@@ -24,6 +26,34 @@
 
     .basket {
         display: flex;
+        position: relative;
         align-items: center;
+        width: 10px;
+
+        >.arrow {
+            position: absolute;
+            top: -8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+            transform: translateX(-5px);
+        }
+    }
+
+    &:hover {
+        background-color: rgb(232, 97, 0);
+        color: rgb(255, 255, 255);
+
+        >.basket {
+            >.arrow {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(5px);
+            }
+
+            >span {
+                display: none;
+            }
+        }
     }
 }
