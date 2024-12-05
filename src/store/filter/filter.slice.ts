@@ -53,7 +53,7 @@ const filterSlice = createSlice({
             });
 
             // 5. Regroup filtered products by categories
-            state.products = filteredProducts.reduce<Record<string, IProducts[]>>((acc, product) => {
+            state.products = filteredProducts.reduce((acc: Record<string, IProducts[]>, product: IProducts) => {
                 if (!acc[product.category]) {
                     acc[product.category] = [];
                 }
