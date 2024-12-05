@@ -2,7 +2,7 @@ import { Segmented, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
 import { sectionsRef } from '../../hooks/SectionsRef';
 import Sort from './sort/Sort';
-import './StyleCategories.scss';
+import './StyleCategories.scss'
 import { useFetchProductsQuery } from '../../store/api/api.pizza';
 import { useAppSelector } from '../../hooks/hooks';
 
