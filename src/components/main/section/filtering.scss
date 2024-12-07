@@ -58,6 +58,16 @@ section {
     background-color: #FE5F00 !important;
 }
 
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #FE5F00 !important;
+
+}
+
+.ant-checkbox-input,
+.ant-checkbox-inner {
+    outline: none !important;
+}
+
 .ant-checkbox-group,
 .ant-radio-group {
     display: flex;
@@ -72,41 +82,41 @@ section {
 }
 
 .ant-form-item-control-input-content {
-    display: flex;
-    gap: 10px;
+    display: flex !important;
+    gap: 10px !important;
 
     >.ant-input-affix-wrapper {
-        border-radius: 10px;
-        width: 90px;
-        height: 40px;
+        border-radius: 10px !important;
+        width: 90px !important;
+        height: 40px !important;
     }
 }
 
 .ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
-    background-color: #FE5F00;
-    border: #FE5F00;
+    background-color: #FE5F00 !important;
+    border: #FE5F00 !important;
 }
 
 .ant-radio-wrapper :hover {
-    border-color: #FE5F00;
+    border-color: #FE5F00 !important;
 }
 
 .ant-radio-wrapper .ant-radio-inner {
-    background-color: #F1F1F1;
-    border: none;
+    background-color: #F1F1F1 !important;
+    border: none !important;
 }
 
 
 .ant-input-outlined {
-    border-color: #bcbcbc;
+    border-color: #bcbcbc !important;
 
     &:focus-within {
-        border-color: #FE5F00;
-        box-shadow: none;
+        border-color: #FE5F00 !important;
+        box-shadow: none !important;
     }
 
     &:hover {
-        border-color: #FE5F00;
+        border-color: #FE5F00 !important;
     }
 }
 
@@ -120,7 +130,7 @@ section {
 }
 
 .ant-slider .ant-slider-handle:hover::after {
-    box-shadow: 0 0 0 2px #FE5F00;
+    box-shadow: 0 0 0 2px #FE5F00 !important;
 }
 
 .ant-slider-mark span {
@@ -132,9 +142,9 @@ section {
 :where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:hover::after,
 :where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:active::after,
 :where(.css-dev-only-do-not-override-apn68).ant-slider .ant-slider-handle:focus::after {
-    outline: 5px solid #fe5f0082;
+    outline: 5px solid #fe5f0082 !important;
 }
 
 :where(.css-dev-only-do-not-override-apn68).ant-slider:hover .ant-slider-handle::after {
-    box-shadow: 0 0 0 2px #FE5F00;
+    box-shadow: 0 0 0 2px #FE5F00 !important;
 }

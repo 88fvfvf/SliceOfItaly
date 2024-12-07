@@ -18,6 +18,11 @@ export interface IProducts {
     description?: string;
     units?: string[];
     toTasty?: IToTasty[]
+    count: number;
+    size?: string
+    type?: string
+    weightProduct?: string
+    tasty: string[]
 }
 export interface IIngredients {
     id: number,

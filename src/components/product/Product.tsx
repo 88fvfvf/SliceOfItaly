@@ -47,7 +47,7 @@ const Product = () => {
                         <li className="active">{productData?.title}</li>
                     </ol>
                 </div>
-                <ProductsBlock productData={productData} />
+                <ProductsBlock productData={productData!} />
             </div>
         </div>
     )

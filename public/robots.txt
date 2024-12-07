@@ -1,4 +1,3 @@
 User-agent: *
 Disallow: /admin
 Disallow: /checkout
-Sitemap: https://sliceofitaly.com/sitemap.xml

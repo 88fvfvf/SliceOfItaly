@@ -2,8 +2,10 @@ import { useState } from "react";
 import DrawerBasket from "../../drawerBasket/DrawerBasket";
 import { FaArrowRight } from "react-icons/fa6";
 import './HeaderRight.scss';
+import { useAppSelector } from "../../../hooks/hooks";
 
 const HeaderRight = () => {
+    const amount = useAppSelector(state => state.basketSlice.basket)
     const [open, setOpen] = useState(false);
 
     const showDrawer = () => {
@@ -24,7 +26,7 @@ const HeaderRight = () => {
                 <div className="arrow">
                     <FaArrowRight color="#fff" />
                 </div>
-                <span>{1}</span>
+                <span>{amount.length}</span>
             </div>
             <div className='DrawerBasket' onClick={(e) => e.stopPropagation()}>
                 <DrawerBasket open={open} onCloseDrawer={onClose} />
