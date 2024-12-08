@@ -123,7 +123,8 @@ const ProductsBlock = ({ productData }: propsData) => {
                             size: dataSize,
                             type,
                             weightProduct: productData?.weight[size || units],
-                            tasty: tasty
+                            tasty: tasty,
+                            unit: units
                         }
                         dispatch(addBasket(updatedProduct))
                     }

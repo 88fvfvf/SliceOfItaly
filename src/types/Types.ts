@@ -23,6 +23,7 @@ export interface IProducts {
     type?: string
     weightProduct?: string
     tasty: string[]
+    unit: number
 }
 export interface IIngredients {
     id: number,

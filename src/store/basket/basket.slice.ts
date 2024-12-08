@@ -19,7 +19,7 @@ const basketSlice = createSlice({
         addBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.type === payload.type &&
+                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -36,7 +36,7 @@ const basketSlice = createSlice({
         minusBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.type === payload.type &&
+                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -54,7 +54,7 @@ const basketSlice = createSlice({
         deleteBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.type === payload.type &&
+                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -63,7 +63,7 @@ const basketSlice = createSlice({
                 // Обновляем корзину, чтобы удалить товар
                 state.basket = state.basket.filter(
                     (item) => !(
-                        item.id === payload.id && item.size === payload.size && item.type === payload.type &&
+                        item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                         JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                     )
                 );

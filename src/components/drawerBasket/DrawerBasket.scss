@@ -1,56 +1,78 @@
 .ant-drawer-body {
-    >div>.basket {
-        display: flex;
-        justify-content: space-between;
-        background: white;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        flex-direction: column;
+    >.body_item {
+        overflow: auto;
+        max-height: 750px;
+        height: 100%;
 
-        .basket_details {
-            display: flex;
-            margin-bottom: 10px;
-            gap: 10px;
-
-            >.details p {
-                display: flex;
-                flex-direction: column;
-                color: rgb(92, 99, 112);
-                font-size: 12px;
-                width: 260px;
-            }
-
-            >.delete_basket {
-                padding-left: 30px;
-            }
+        &::-webkit-scrollbar {
+            width: 5px;
         }
 
-        >.current {
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgb(255, 94, 0);
+            cursor: n-resize;
+            border-radius: 10px;
+        }
+
+
+        >.basket {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgb(226, 226, 233);
-            font-size: 16px;
-            font-weight: 600;
-            padding-block: 15px;
+            background: white;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            flex-direction: column;
 
-            >.counter {
+            .basket_details {
                 display: flex;
-                justify-content: space-around;
-                align-items: center;
-                background: rgb(243, 243, 247);
-                border-radius: 50px;
-                color: rgb(92, 99, 112);
-                width: 96px;
-                height: 32px;
-                -moz-user-select: -moz-none;
-                -o-user-select: none;
-                -khtml-user-select: none;
-                -webkit-user-select: none;
-                user-select: none;
+                margin-bottom: 10px;
+                gap: 10px;
 
-                >svg:hover {
-                    fill: #000;
+                >.details p {
+                    display: flex;
+                    flex-direction: column;
+                    color: rgb(92, 99, 112);
+                    font-size: 12px;
+                    width: 260px;
+                }
+
+                >.delete_basket {
+                    padding-left: 30px;
+                }
+            }
+
+            >.current {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-top: 1px solid rgb(226, 226, 233);
+                font-size: 16px;
+                font-weight: 600;
+                padding-block: 15px;
+
+                >.counter {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    background: rgb(243, 243, 247);
+                    border-radius: 50px;
+                    color: rgb(92, 99, 112);
+                    width: 96px;
+                    height: 32px;
+                    -moz-user-select: -moz-none;
+                    -o-user-select: none;
+                    -khtml-user-select: none;
+                    -webkit-user-select: none;
+                    user-select: none;
+
+                    >svg:hover {
+                        fill: #000;
+                    }
                 }
             }
         }
@@ -65,7 +87,7 @@
         position: relative;
         padding: 0 !important;
 
-        >div>footer {
+        >footer {
             position: absolute;
             left: 0;
             bottom: 0;
