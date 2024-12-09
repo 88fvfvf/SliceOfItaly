@@ -30,7 +30,7 @@ const filterSlice = createSlice({
 
             filteredProducts = filteredProducts.filter((product) => {
                 // Проверка диапазона цены
-                const matchesPrice = product.price >= payload.FromSlider && product.price <= payload.ToSlider;
+                const matchesPrice = product.prices[0] >= payload.FromSlider && product.prices[0] <= payload.ToSlider;
 
                 // Проверка ингредиентов
                 const matchesIngredients = payload.Ingredients?.length
