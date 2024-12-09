@@ -56,7 +56,7 @@ const ProductsBlock = ({ productData }: propsData) => {
     };
 
     const totalPriceProduct = () => {
-        const basePrice = productData?.prices[size] || 0; // Используем индекс размера
+        const basePrice = productData?.prices[size | units] || 0; // Используем индекс размера
         const ingredientsPrice = toTasty.reduce((sum, ingredient) => sum + ingredient.addPrice, 0);
         return basePrice + ingredientsPrice;
     };
@@ -130,12 +130,12 @@ const ProductsBlock = ({ productData }: propsData) => {
                             weightProduct: productData?.weight[size || units],
                             tasty: tasty,
                             unit: units,
-                            finalPrice: totalPriceProduct() | productData.prices[units],
+                            finalPrice: totalPriceProduct()
                         };
                         dispatch(addBasket(updatedProduct));
                     }}
                 >
-                    Добавить в корзину за {totalPriceProduct() | productData.prices[units]}₽
+                    Добавить в корзину за {totalPriceProduct()}₽
                 </button>
             </div>
         </div>
