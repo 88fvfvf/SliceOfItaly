@@ -19,7 +19,7 @@ const basketSlice = createSlice({
         addBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
+                    item.id === payload.id && item.finalPrice === payload.finalPrice && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -31,12 +31,12 @@ const basketSlice = createSlice({
                     count: 1
                 })
             }
-            state.totalPrice = state.basket.reduce((acc, obj) => (obj.price * obj.count) + acc, 0)
+            state.totalPrice = state.basket.reduce((acc, obj) => (obj.finalPrice * obj.count) + acc, 0)
         },
         minusBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
+                    item.id === payload.id && item.finalPrice === payload.finalPrice && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -44,7 +44,7 @@ const basketSlice = createSlice({
                 existingItem.count--
             }
             state.totalPrice = state.basket.reduce((acc, obj) => {
-                return (obj.price * obj.count) + acc
+                return (obj.finalPrice * obj.count) + acc
             }, 0)
         },
         deleteAll: (state) => {
@@ -54,7 +54,7 @@ const basketSlice = createSlice({
         deleteBasket: (state, { payload }: PayloadAction<IProducts>) => {
             const existingItem = state.basket.find(
                 (item) => (
-                    item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
+                    item.id === payload.id && item.finalPrice === payload.finalPrice && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                     JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                 )
             );
@@ -63,13 +63,13 @@ const basketSlice = createSlice({
                 // Обновляем корзину, чтобы удалить товар
                 state.basket = state.basket.filter(
                     (item) => !(
-                        item.id === payload.id && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
+                        item.id === payload.id && item.finalPrice === payload.finalPrice && item.size === payload.size && item.unit === payload.unit && item.type === payload.type &&
                         JSON.stringify(item.tasty) === JSON.stringify(payload.tasty)
                     )
                 );
 
                 // Обновляем общую сумму
-                state.totalPrice -= existingItem.price * existingItem.count;
+                state.totalPrice -= existingItem.finalPrice * existingItem.count;
             }
         }
 

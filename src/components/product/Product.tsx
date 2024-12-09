@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import { useFetchProductByTitleQuery, useFetchProductsQuery } from "../../store/api/api.pizza";
+import { useFetchProductByTitleQuery } from "../../store/api/api.pizza";
 import ProductsBlock from "../productsBlock/ProductsBlock";
 import './product.scss';
 
 const Product = () => {
     const { title } = useParams<{ title: string }>()
-    const { data: allProducts } = useFetchProductsQuery(undefined, {
+    const { data: allProducts } = useFetchProductByTitleQuery(undefined, {
         skip: !title
     })
 

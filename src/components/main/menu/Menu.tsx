@@ -34,7 +34,7 @@ const Menu = ({ data }: IPropsMenu) => {
                     </Link>
                     <div className="pizza__options">
                         <div className="main__price_button">
-                            <h3><span>от</span> {data?.price} ₽</h3>
+                            <h3><span>от</span> {data?.prices[0]} ₽</h3>
                             <button>
                                 <span>+</span> Добавить
                             </button>

@@ -48,7 +48,7 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
                                         </div>
                                     </div>
                                     <div className="current">
-                                        <div className='price'>{basket.price} ₽</div>
+                                        <div className='price'>{basket.finalPrice} ₽</div>
                                         <div className="counter">
                                             <FaMinus color='rgb(92, 99, 112)' cursor={'pointer'} onClick={() => dispatch(minusBasket(basket))} />
                                             <span>{basket.count}</span>

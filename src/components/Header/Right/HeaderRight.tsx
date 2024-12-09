@@ -21,13 +21,19 @@ const HeaderRight = () => {
             <div className="price">
                 <span>Корзина</span>
             </div>
-            <div className="header__left_line"></div>
-            <div className="basket">
-                <div className="arrow">
-                    <FaArrowRight color="#fff" />
-                </div>
-                <span>{amount.length}</span>
-            </div>
+            {amount.length > 0 ? (
+                <>
+                    <div className="header__left_line"></div>
+                    <div className="basket">
+                        <div className="arrow">
+                            <FaArrowRight color="#fff" />
+                        </div>
+                        <span>{amount.length}</span>
+                    </div>
+                </>
+            ) : (
+                null
+            )}
             <div className='DrawerBasket' onClick={(e) => e.stopPropagation()}>
                 <DrawerBasket open={open} onCloseDrawer={onClose} />
             </div>

@@ -1,50 +1,69 @@
-import { Rate, Segmented } from 'antd'
-import { useState } from 'react'
-import { IProducts } from '../../types/Types'
-import './ProductBlock.scss'
-import { useAppDispatch } from '../../hooks/hooks'
-import { addBasket } from '../../store/basket/basket.slice'
+import { Rate, Segmented } from 'antd';
+import { useState } from 'react';
+import { IProducts } from '../../types/Types';
+import './ProductBlock.scss';
+import { useAppDispatch } from '../../hooks/hooks';
+import { addBasket } from '../../store/basket/basket.slice';
 
 interface propsData {
-    productData: IProducts
+    productData: IProducts;
+}
+
+interface Itasty {
+    id: number;
+    title: string;
+    image: string;
+    addPrice: number;
 }
 
 const ProductsBlock = ({ productData }: propsData) => {
-    const [size, setSize] = useState(0)
-    const [units, setUnits] = useState(0)
-    const [type, setType] = useState("Традиционное")
-    const [dataSize, setDataSize] = useState<string>("25 см")
-    const [toTasty, setToTasty] = useState<number[]>([])
-    const [tasty, setTasty] = useState<string[]>([])
-    const dispatch = useAppDispatch()
+    const [size, setSize] = useState(0);
+    const [units, setUnits] = useState(0);
+    const [type, setType] = useState("Традиционное");
+    const [dataSize, setDataSize] = useState<string>("25 см");
+    const [toTasty, setToTasty] = useState<Itasty[]>([]); // Массив объектов ингредиентов
+    const [tasty, setTasty] = useState<string[]>([]);
+    const dispatch = useAppDispatch();
 
-    const toggleActive = (id: number) => {
-        setToTasty((prev) => (
-            prev.includes(id)
-                ? prev.filter((divId) => divId !== id)
-                : [...prev, id]
-        ))
-    }
+    const toggleActive = (taste: Itasty) => {
+        setToTasty((prev) => {
+            const isActive = prev.some((item) => item.id === taste.id);
+            return isActive ? prev.filter((item) => item.id !== taste.id) : [...prev, taste];
+        });
+        setTasty((prev) => {
+            const isAlreadySelected = prev.includes(taste.title);
+            if (isAlreadySelected) {
+                return prev.filter((item) => item !== taste.title);
+            } else {
+                return [...prev, taste.title];
+            }
+        });
+    };
 
-    const handleSizeClick = (e: string) => {
-        const index = productData?.sizes?.indexOf(e)
-
-        if (index !== undefined && index !== -1) {
-            setSize(index)
-            setDataSize(e)
-        } else {
-            console.log("sizes not found");
+    const handleSizeClick = (sizeName: string) => {
+        const index = productData.sizes?.indexOf(sizeName);
+        if (index !== undefined && index >= 0) {
+            setSize(index);
+            setDataSize(sizeName);
         }
-    }
-    const handleUnits = (units: string) => {
-        const indexUnits = productData?.units?.indexOf(units)
-        if (indexUnits !== undefined && indexUnits !== -1) {
-            setUnits(indexUnits)
-        } else {
-            alert("Oopps...")
-        }
-    }
+    };
 
+    const handleUnits = (unitName: string) => {
+        const index = productData?.units?.indexOf(unitName);
+        if (index !== -1) {
+            setUnits(index!);
+        }
+    };
+
+    const totalPriceProduct = () => {
+        const basePrice = productData?.prices[size] || 0; // Используем индекс размера
+        const ingredientsPrice = toTasty.reduce((sum, ingredient) => sum + ingredient.addPrice, 0);
+        return basePrice + ingredientsPrice;
+    };
+
+    if (!productData) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="ProductsBlock">
@@ -63,7 +82,7 @@ const ProductsBlock = ({ productData }: propsData) => {
                         <span>{productData?.weight[size || units]}</span>
                     </div>
                 </div>
-                {productData?.types && productData?.sizes ? (
+                {productData?.types && productData?.sizes && (
                     <div className="product_segment">
                         <div className="segment_sizes">
                             <Segmented options={productData.sizes} onChange={(e) => handleSizeClick(e)} block />
@@ -72,50 +91,36 @@ const ProductsBlock = ({ productData }: propsData) => {
                             <Segmented options={productData?.types} onChange={(t) => setType(t)} block />
                         </div>
                     </div>
-                ) : (
-                    null
                 )}
-                {productData?.units?.length ? (
-                    <div className='product_segment'>
+                {productData?.units && (
+                    <div className="product_segment">
                         <div>
-                            <Segmented options={productData?.units} onChange={(units) => handleUnits(units)} block />
+                            <Segmented options={productData?.units} onChange={(unit) => handleUnits(unit)} block />
                         </div>
                     </div>
-                ) : (
-                    null
                 )}
-                {productData?.toTasty ? (
+                {productData?.toTasty && (
                     <>
                         <h3>Добавить по вкусу</h3>
                         <div className="product_addIngredients">
-                            {productData?.toTasty?.map(taste => (
+                            {productData?.toTasty?.map((taste) => (
                                 <div
-                                    className={`addIngredients ${toTasty.includes(taste.id) ? 'active' : ''}`}
+                                    className={`addIngredients ${toTasty.some((i) => i.id === taste.id) ? 'active' : ''}`}
                                     key={taste.id}
-                                    onClick={() => {
-                                        toggleActive(taste.id),
-                                            setTasty((prev) =>
-                                                prev.includes(taste.title)
-                                                    ? prev.filter((item) => item !== taste.title)
-                                                    : [...prev, taste.title]
-                                            );
-                                    }}
+                                    onClick={() => toggleActive(taste)}
                                 >
                                     <div className="addIngredients_img">
                                         <img src={taste.image} alt="no-image" width={110} loading="lazy" />
                                     </div>
                                     <div className="addIngredients_name">
                                         <p>{taste.title}</p>
-                                        <strong>{taste.price} ₽</strong>
+                                        <strong>{taste.addPrice} ₽</strong>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </>
-                ) : (
-                    null
-                )
-                }
+                )}
                 <button
                     onClick={() => {
                         const updatedProduct = {
@@ -124,16 +129,17 @@ const ProductsBlock = ({ productData }: propsData) => {
                             type,
                             weightProduct: productData?.weight[size || units],
                             tasty: tasty,
-                            unit: units
-                        }
-                        dispatch(addBasket(updatedProduct))
-                    }
-                    }>
-                    Добавить в корзину за {productData?.price}₽
+                            unit: units,
+                            finalPrice: totalPriceProduct() | productData.prices[units],
+                        };
+                        dispatch(addBasket(updatedProduct));
+                    }}
+                >
+                    Добавить в корзину за {totalPriceProduct() | productData.prices[units]}₽
                 </button>
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default ProductsBlock
+export default ProductsBlock;

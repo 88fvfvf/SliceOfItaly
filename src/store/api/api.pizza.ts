@@ -12,7 +12,12 @@ export const pizzaApi = createApi({
         }),
         fetchProductByTitle: builder.query<IProducts, string>({
             query: (title) => ({
-                url: `/products?title${encodeURIComponent(title)}`
+                url: `/products?title=${encodeURIComponent(title)}`
+            })
+        }),
+        fetchProductBySearch: builder.query<IProducts[], string>({
+            query: (search) => ({
+                url: `/search?q=${search}`
             })
         }),
         fetchIngredients: builder.query<IIngredients[], void>({
@@ -21,6 +26,6 @@ export const pizzaApi = createApi({
             })
         })
     })
-})
+});
 
-export const { useFetchProductsQuery, useFetchProductByTitleQuery, useFetchIngredientsQuery } = pizzaApi
+export const { useFetchProductsQuery, useFetchProductByTitleQuery, useFetchIngredientsQuery, useFetchProductBySearchQuery } = pizzaApi;

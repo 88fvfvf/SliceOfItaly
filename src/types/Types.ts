@@ -2,7 +2,7 @@ interface IToTasty {
     id: number,
     title: string,
     image: string,
-    price: number
+    addPrice: number
 }
 
 export interface IProducts {
@@ -12,7 +12,8 @@ export interface IProducts {
     types?: string[];
     sizes?: string[];
     weight: string[];
-    price: number;
+    prices: number[];
+    finalPrice: number
     category: string;
     rating: number;
     description?: string;
