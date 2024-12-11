@@ -1,0 +1,58 @@
+.found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 20vh);
+    gap: 50px;
+}
+
+.found .found_recomend {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.found .found_recomend .found_info {
+    font-family: 'Nunito';
+}
+
+.found .found_recomend .found_info p {
+    color: #999999;
+    width: 350px;
+}
+
+.found .found_buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.found .found_buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 16px;
+    background: none;
+    padding: 5px 10px;
+    border: 1px solid #C7C7C7;
+    border-radius: 15px;
+    color: #898989;
+    transition: all 0.3s ease;
+    height: 50px;
+    cursor: pointer;
+}
+
+.found .found_buttons button:hover {
+    border-color: #FE5F00;
+    color: #FE5F00;
+}
+
+.found .found_buttons a {
+    text-decoration: none;
+}
+
+.found .found_buttons a button {
+    border-color: #FE5F00;
+    color: #FE5F00;
+}

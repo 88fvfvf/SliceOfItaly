@@ -41,37 +41,42 @@
             cursor: n-resize;
         }
 
-        >.bar_item {
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            padding: 5px;
-            height: 50px;
-            gap: 15px;
+        >a {
+            text-decoration: none;
+            color: #000;
 
-            >img {
-                width: 40px;
-            }
+            >.bar_item {
+                display: flex;
+                align-items: center;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+                padding: 5px;
+                height: 50px;
+                gap: 15px;
 
-            >.item_title p {
-                font-weight: 400;
-                font-size: 18px;
-            }
+                >img {
+                    width: 40px;
+                }
 
-            >.item_price p {
-                padding-top: 3px;
-                font-size: 12px;
-                color: #858585;
-            }
+                >.item_title p {
+                    font-weight: 400;
+                    font-size: 18px;
+                }
 
-            &:last-child {
-                border: none;
-                padding-bottom: 0;
-            }
+                >.item_price p {
+                    padding-top: 3px;
+                    font-size: 12px;
+                    color: #858585;
+                }
 
-            &:hover {
-                background-color: #FFFAF6;
+                &:last-child {
+                    border: none;
+                    padding-bottom: 0;
+                }
+
+                &:hover {
+                    background-color: #FFFAF6;
+                }
             }
         }
     }

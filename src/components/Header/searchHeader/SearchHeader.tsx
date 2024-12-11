@@ -3,6 +3,7 @@ import { SearchIcon } from '../../../../public/svg/icone';
 import './Search.scss';
 import { useFetchProductBySearchQuery } from '../../../store/api/api.pizza';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchHeader = () => {
     const [search, setSearch] = useState<string>('');
@@ -39,15 +40,17 @@ const SearchHeader = () => {
             {data && data.length > 0 && (
                 <div className="search_bar">
                     {data.map((bar) => (
-                        <div className="bar_item" key={bar.id}>
-                            <img src={bar.images[0]} alt="No image" />
-                            <div className="item_title">
-                                <p>{bar.title}</p>
+                        <Link to={`/product/${bar.title}`}>
+                            <div className="bar_item" key={bar.id}>
+                                <img src={bar.images[0]} alt="No image" />
+                                <div className="item_title">
+                                    <p>{bar.title}</p>
+                                </div>
+                                <div className="item_price">
+                                    <p>{bar.prices[0]} ₽</p>
+                                </div>
                             </div>
-                            <div className="item_price">
-                                <p>{bar.prices[0]} ₽</p>
-                            </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             )}

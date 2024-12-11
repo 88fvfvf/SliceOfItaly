@@ -1,13 +1,13 @@
 import { TbPizzaOff } from 'react-icons/tb'
-import './NotFound.scss'
+import './NotPizzas.scss'
 
-const NotFound = () => {
+const NotPizzas = () => {
     return (
-        <div className='NotFound'>
+        <div className='NotPizzas'>
             <TbPizzaOff size={100} />
             <h2>Упсс.. пиццы не найдены</h2>
         </div>
     )
 }
 
-export default NotFound
+export default NotPizzas

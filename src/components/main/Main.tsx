@@ -3,10 +3,10 @@ import { useAppSelector } from '../../hooks/hooks';
 import { sectionsRef } from '../../hooks/SectionsRef';
 import { useFetchProductsQuery } from '../../store/api/api.pizza';
 import Menu from './menu/Menu';
+import NotPizzas from './notPizzas/NotPizzas';
 import Filtering from './section/filtering';
 import SkeletonPizza from './skeleton/SkeletonPizza';
 import './StyleMain.scss';
-import NotFound from './notFound/NotFound';
 
 const Main = () => {
     const { products } = useAppSelector((state) => state.filter);
@@ -53,7 +53,7 @@ const Main = () => {
                                             </div>
                                         ))
                                     ) : (
-                                        <NotFound />
+                                        <NotPizzas />
                                     )}
                                 </div>
                             )
