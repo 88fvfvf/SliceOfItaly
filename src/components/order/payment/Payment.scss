@@ -1,0 +1,51 @@
+.payment {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    width: 450px;
+    height: 290px;
+
+    >.total {
+        padding: 20px 40px;
+    }
+
+    >.payment_body {
+        padding: 20px 40px;
+        border-block: 1px solid #c7c7c7;
+
+        >div {
+            display: flex;
+            justify-content: space-between;
+
+            >div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    }
+
+    >.toPay {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+
+        >button {
+            background: #FE5F00;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            font-family: 'Nunito';
+            font-size: 18px;
+            color: #fff;
+            width: 370px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: rgb(232, 97, 0);
+            }
+        }
+    }
+}

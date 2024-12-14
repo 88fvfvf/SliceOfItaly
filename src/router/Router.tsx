@@ -1,9 +1,9 @@
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from '../page/home/App';
-import ProductPage from '../page/productPage/ProductPage';
-import { HelmetProvider } from 'react-helmet-async';
 import NotFound from '../page/NotFound/NotFound';
 import OrderPage from '../page/orderPage/OrderPage';
+import ProductPage from '../page/productPage/ProductPage';
 
 const Router = () => {
     return (

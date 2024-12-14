@@ -1,0 +1,50 @@
+.address {
+    margin-top: 50px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+
+    >.address_header {
+        border-bottom: 1px solid #c7c7c7;
+        padding: 20px;
+    }
+
+    >.address_info {
+        padding: 20px;
+
+        >form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            >div>div {
+                display: flex !important;
+                flex-direction: column;
+                margin-bottom: 20px;
+                gap: 10px;
+
+                >div {
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: 600;
+
+                    >div {
+                        >div {
+                            width: 330px;
+                            height: 50px;
+
+                            >input {
+                                border-radius: 10px;
+                                font-size: 16px;
+                            }
+
+                            >textarea {
+                                border-radius: 10px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

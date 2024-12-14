@@ -1,84 +1,90 @@
-.order {
-    max-width: 752px;
-    width: 100%;
-    user-select: none;
+.MakingOrder {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    margin-top: 20px;
 
-    >.order_basket {
-        margin-top: 20px;
-        border-radius: 30px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    >.order {
+        max-width: 752px;
+        width: 100%;
+        user-select: none;
 
-        >.basket_header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #c7c7c7;
-            padding: 20px;
+        >.order_basket {
+            border-radius: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 
-            >span {
+            >.basket_header {
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                color: #C0C0C0;
-                transition: all 0.3s ease;
-                cursor: pointer;
-                gap: 10px;
+                border-bottom: 1px solid #c7c7c7;
+                padding: 20px;
 
-                &:hover {
-                    color: #000;
+                >span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #C0C0C0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    gap: 10px;
+
+                    &:hover {
+                        color: #000;
+                    }
                 }
             }
-        }
 
-        >.basket_cart {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-
-            >.cart_product {
+            >.basket_cart {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
-                max-width: 372px;
-                width: 100%;
-                gap: 15px;
+                padding: 20px;
 
-                >.cart_details p {
-                    color: #A1A1A1;
-                }
-
-            }
-
-            >.cart_price {
-                width: 62px;
-            }
-
-            >.cart_amount {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-                >.amount_minus,
-                .amount_plus {
+                >.cart_product {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    border: 1px solid #FE5F00;
-                    border-radius: 10px;
-                    width: 30px;
-                    height: 30px;
-                    cursor: pointer;
+                    max-width: 372px;
+                    width: 100%;
+                    gap: 15px;
+
+                    >.cart_details p {
+                        color: #A1A1A1;
+                    }
+
                 }
-            }
 
-            >.cart_delete {
-                margin-left: -60px;
-                transition: all 0.3s ease;
-                color: #C0C0C0;
+                >.cart_price {
+                    width: 62px;
+                }
 
-                &:hover {
-                    color: #000;
+                >.cart_amount {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+
+                    >.amount_minus,
+                    .amount_plus {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid #FE5F00;
+                        border-radius: 10px;
+                        width: 30px;
+                        height: 30px;
+                        cursor: pointer;
+                    }
+                }
+
+                >.cart_delete {
+                    margin-left: -60px;
+                    transition: all 0.3s ease;
+                    color: #C0C0C0;
+
+                    &:hover {
+                        color: #000;
+                    }
                 }
             }
         }
