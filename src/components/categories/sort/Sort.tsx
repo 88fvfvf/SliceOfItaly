@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { sortProducts } from '../../../store/filter/filter.slice.ts';
 
 const Sort = () => {
-    const [sort, setSort] = useState('популярности');
+    const [sort, setSort] = useState('');
     const dispatch = useDispatch();
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
@@ -19,14 +19,13 @@ const Sort = () => {
             menu={{
                 items,
                 selectable: true,
-                defaultSelectedKeys: ['3'],
                 onClick: handleMenuClick,
             }}
         >
             <Typography>
                 <Space style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <SortIcon />
-                    <span>Сортировка:</span>
+                    <span>Сортировка</span>
                     <span style={{ color: "#FE5F1E", borderBottom: "1px dotted red" }}>{sort}</span>
                 </Space>
             </Typography>

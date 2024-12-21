@@ -59,6 +59,11 @@
                 width: 240px;
                 height: 55px;
                 cursor: pointer;
+                user-select: none;
+
+                >article {
+                    width: 205px;
+                }
             }
 
             span {
