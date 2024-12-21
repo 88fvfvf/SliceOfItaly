@@ -1,0 +1,17 @@
+.footer {
+    display: flex;
+    position: sticky;
+    justify-content: center;
+    background-color: #FE5F1E;
+    padding-block: 10px;
+    color: #fff;
+    bottom: 0;
+
+    >p {
+        >a {
+            font-weight: 700;
+            text-decoration: underline;
+            color: #fff;
+        }
+    }
+}

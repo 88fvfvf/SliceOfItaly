@@ -6,6 +6,7 @@ import ProductsBlock from "../productsBlock/ProductsBlock";
 import './product.scss';
 import NotFound from "../../page/NotFound/NotFound";
 import LoadSpin from "../loadSpin/LoadSpin";
+import Footer from "../footer/Footer";
 
 const Product = () => {
     const { title } = useParams<{ title: string }>()
@@ -41,6 +42,7 @@ const Product = () => {
                 </div>
                 <ProductsBlock productData={productData} />
             </div>
+            <Footer />
         </div>
     )
 }
