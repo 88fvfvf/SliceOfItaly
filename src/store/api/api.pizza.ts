@@ -5,14 +5,9 @@ export const pizzaApi = createApi({
     reducerPath: 'pizzaApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api-git-main-88fvfvfs-projects.vercel.app/api/' }),
     endpoints: (builder) => ({
-        fetchProducts: builder.query<IProducts[], void>({
-            query: () => ({
-                url: '/products'
-            })
-        }),
-        fetchProductByTitle: builder.query<IProducts, string>({
+        fetchProducts: builder.query<IProducts[], string | void>({
             query: (title) => ({
-                url: `/products?title=${encodeURIComponent(title)}`
+                url: title ? `/products?title=${encodeURIComponent(title)}` : '/products'
             })
         }),
         fetchProductBySearch: builder.query<IProducts[], string>({
@@ -24,8 +19,13 @@ export const pizzaApi = createApi({
             query: () => ({
                 url: '/ingredients'
             })
+        }),
+        fetchProductByTitle: builder.query<IProducts[], string>({
+            query: (title) => ({
+                url: `/products?title=${encodeURIComponent(title)}`
+            })
         })
     })
 });
 
-export const { useFetchProductsQuery, useFetchProductByTitleQuery, useFetchIngredientsQuery, useFetchProductBySearchQuery } = pizzaApi;
+export const { useFetchProductsQuery, useFetchIngredientsQuery, useFetchProductBySearchQuery, useFetchProductByTitleQuery } = pizzaApi;

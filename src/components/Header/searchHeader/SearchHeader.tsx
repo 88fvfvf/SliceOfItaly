@@ -40,7 +40,7 @@ const SearchHeader = () => {
             {data && data.length > 0 && (
                 <div className="search_bar">
                     {data.map((bar) => (
-                        <Link to={`/product/${bar.title}`}>
+                        <Link to={`/product/${bar.title}`} onClick={() => setSearch('')}>
                             <div className="bar_item" key={bar.id}>
                                 <img src={bar.images[0]} alt="No image" />
                                 <div className="item_title">

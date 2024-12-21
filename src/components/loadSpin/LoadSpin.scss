@@ -1,0 +1,10 @@
+.loadSpin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+
+    >div>span>span>i {
+        background: #FE5F00 !important;
+    }
+}

@@ -61,6 +61,25 @@ const filterSlice = createSlice({
                 return acc;
             }, {});
         },
+        sortProducts: (state, { payload }: PayloadAction<string>) => {
+            const sortType = payload;
+            const sortedProducts = { ...state.products };
+
+            Object.keys(sortedProducts).forEach(category => {
+                sortedProducts[category] = sortedProducts[category].slice().sort((a, b) => {
+                    if (sortType === 'популярности') {
+                        return b.rating - a.rating;
+                    } else if (sortType === 'по цене') {
+                        return b.prices[0] - a.prices[0];
+                    } else if (sortType === 'по алфавиту') {
+                        return a.title.localeCompare(b.title);
+                    }
+                    return 0;
+                });
+            });
+
+            state.products = sortedProducts;
+        },
     },
     extraReducers: (builder) => {
         builder.addMatcher(
@@ -82,5 +101,5 @@ const filterSlice = createSlice({
     },
 });
 
-export const { applyFilter } = filterSlice.actions;
+export const { applyFilter, sortProducts } = filterSlice.actions;
 export default filterSlice.reducer;

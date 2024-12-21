@@ -2,11 +2,16 @@ import { Dropdown, MenuProps, Space, Typography } from "antd";
 import { SortIcon } from '../../../../public/svg/icone.tsx';
 import { items } from './items.ts';
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { sortProducts } from '../../../store/filter/filter.slice.ts';
 
 const Sort = () => {
-    const [sort, setSort] = useState('популярности')
+    const [sort, setSort] = useState('популярности');
+    const dispatch = useDispatch();
+
     const handleMenuClick: MenuProps['onClick'] = (e) => {
         setSort(e.key);
+        dispatch(sortProducts(e.key));
     };
 
     return (
