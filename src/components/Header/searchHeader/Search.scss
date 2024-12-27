@@ -1,7 +1,14 @@
 .Search {
     position: relative;
+    max-width: 765px !important;
+    width: 100% !important;
 
     >span {
+        background-color: rgb(243 244 246) !important;
+        height: 44px !important;
+        border: none !important;
+        border-radius: 15px !important;
+
         >.ant-input-prefix {
             padding-right: 5px;
         }

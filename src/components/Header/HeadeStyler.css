@@ -1,0 +1,17 @@
+header{
+    border-bottom: 1px solid #EDEDED;
+}
+.allheader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 10px;
+}
+
+@media (max-width: 1160px){
+    .allheader{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

@@ -29,13 +29,6 @@ const SearchHeader = () => {
                 placeholder='Поиск пиццы...'
                 onChange={handleSearchChange}
                 prefix={<SearchIcon />}
-                style={{
-                    backgroundColor: 'rgb(243 244 246)',
-                    width: '765px',
-                    height: '44px',
-                    borderRadius: '15px',
-                    border: 'none'
-                }}
             />
             {data && data.length > 0 && (
                 <div className="search_bar">

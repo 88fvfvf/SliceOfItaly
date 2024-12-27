@@ -1,10 +1,11 @@
 import { Segmented, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
-import { sectionsRef } from '../../hooks/SectionsRef';
-import Sort from './sort/Sort';
-import './StyleCategories.scss'
-import { useFetchProductsQuery } from '../../store/api/api.pizza';
 import { useAppSelector } from '../../hooks/hooks';
+import { sectionsRef } from '../../hooks/SectionsRef';
+import { useFetchProductsQuery } from '../../store/api/api.pizza';
+import AllFilterDrawer from './allFilterDrawer/AllFilterDrawer';
+import Sort from './sort/Sort';
+import './StyleCategories.scss';
 
 const Categories = () => {
     const [activeSegment, setActiveSegment] = useState('Пиццы');
@@ -77,6 +78,7 @@ const Categories = () => {
                     <div className="DropDown">
                         <Sort />
                     </div>
+                    <AllFilterDrawer />
                 </div>
             </div>
         </div>

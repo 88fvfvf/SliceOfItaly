@@ -1,19 +1,17 @@
 import HeaderLeft from './Left/HeaderLeft'
 import HeaderRight from './Right/HeaderRight'
 import SearchHeader from './searchHeader/SearchHeader'
+import './HeadeStyler.css'
 
 const Header = () => {
     return (
-        <header style={{ borderBottom: '1px solid #EDEDED' }}>
-            <div className="container" style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingBlock: '10px'
-            }}>
-                <HeaderLeft />
-                <SearchHeader />
-                <HeaderRight />
+        <header>
+            <div className="container">
+                <div className="allheader">
+                    <HeaderLeft />
+                    <SearchHeader />
+                    <HeaderRight />
+                </div>
             </div>
         </header >
     )

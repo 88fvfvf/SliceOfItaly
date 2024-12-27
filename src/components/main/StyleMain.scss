@@ -18,10 +18,26 @@ main {
                     display: flex;
                     flex-wrap: wrap;
                     margin-bottom: 20px;
-                    min-width: 904px;
                     gap: 25px;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .main_block {
+        >div>div {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .filter__main_block {
+        >section{
+            display: none;
         }
     }
 }

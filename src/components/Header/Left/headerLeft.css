@@ -4,6 +4,7 @@
     text-decoration: none;
     color: #000;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .header__logo {
@@ -15,6 +16,7 @@
     font-size: 24px;
     font-weight: 800;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .header__text p {
@@ -24,4 +26,5 @@
     font-style: normal;
     font-weight: 400;
     line-height: 0.3;
+    white-space: nowrap;
 }
