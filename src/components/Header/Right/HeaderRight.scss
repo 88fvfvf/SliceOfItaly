@@ -13,7 +13,10 @@
     cursor: pointer;
     gap: 7px;
 
-    span {
+
+
+    .price,
+    .basket>span {
         color: #FFF;
         padding-left: 5px;
     }
@@ -40,6 +43,8 @@
         }
     }
 
+
+
     &:hover {
         background-color: rgb(232, 97, 0);
         color: rgb(255, 255, 255);
@@ -55,5 +60,49 @@
                 display: none;
             }
         }
+    }
+}
+
+
+.fixed_basket {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: #FE5F1E;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    bottom: 50px;
+    right: 40px;
+    cursor: pointer;
+
+    >.fixed_basket__amount {
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFF;
+        border-radius: 50%;
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        top: -3px;
+        right: -3px;
+
+        >span {
+            color: #FE5F1E;
+            font-weight: 600;
+        }
+    }
+}
+
+@media (max-width: 1160px) {
+    .header__right {
+        display: none;
+    }
+
+    .fixed_basket {
+        display: flex;
     }
 }

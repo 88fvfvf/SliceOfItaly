@@ -25,7 +25,8 @@ const AllFilterDrawer = () => {
             <Drawer
                 onClose={onClose}
                 open={open}
-                destroyOnClose // Необязательно, чтобы дровер удалялся при закрытии
+                width={'100%'}
+                style={{ display: 'flex', justifyContent: 'center', background: '#fff !important' }}
             >
                 <Filtering />
             </Drawer>

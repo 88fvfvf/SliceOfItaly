@@ -29,6 +29,10 @@ section {
     }
 }
 
+.sort_drawer {
+    display: none;
+}
+
 .filter__button {
     background-color: #FE5F00;
     border-radius: 18px;
@@ -147,4 +151,10 @@ section {
 
 :where(.css-dev-only-do-not-override-apn68).ant-slider:hover .ant-slider-handle::after {
     box-shadow: 0 0 0 2px #FE5F00 !important;
+}
+
+@media (max-width: 900px) {
+    .sort_drawer {
+        display: block;
+    }
 }

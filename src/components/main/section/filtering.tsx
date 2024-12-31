@@ -6,6 +6,7 @@ import { useFetchIngredientsQuery } from "../../../store/api/api.pizza";
 import { applyFilter, IFilter } from "../../../store/filter/filter.slice";
 import './filtering.scss';
 import LoadingIng from "./loading/LoadingIng";
+import Sort from "../../categories/sort/Sort";
 
 const Filtering = () => {
     const { data, isLoading } = useFetchIngredientsQuery()
@@ -114,6 +115,9 @@ const Filtering = () => {
                         />
                     </Form.Item>
                 </div>
+                <div className="sort_drawer">
+                    <Sort />
+                </div>
                 <Divider />
                 <div className="filterBy__Ingredients">
                     <h2>Ингредиенты:</h2>
@@ -134,6 +138,7 @@ const Filtering = () => {
                         </Checkbox.Group>
                     </Form.Item>
                 </div>
+
                 <button className="filter__button" type="submit">
                     <h3>Применить</h3>
                 </button>

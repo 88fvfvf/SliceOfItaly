@@ -28,7 +28,7 @@ const Main = () => {
             });
         };
     }, [categories]);
-
+    
     return (
         <main>
             <div className="container">
