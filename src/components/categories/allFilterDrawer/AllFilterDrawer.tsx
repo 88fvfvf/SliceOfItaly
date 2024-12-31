@@ -26,7 +26,7 @@ const AllFilterDrawer = () => {
                 onClose={onClose}
                 open={open}
                 width={'100%'}
-                style={{ display: 'flex', justifyContent: 'center', background: '#fff !important' }}
+                id='filterDrawer'
             >
                 <Filtering />
             </Drawer>
