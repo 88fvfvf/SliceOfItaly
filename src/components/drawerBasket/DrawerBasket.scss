@@ -1,8 +1,9 @@
 .ant-drawer-body {
     >.body_item {
         overflow: auto;
-        max-height: 750px;
+        max-height: calc(100vh - 200px);
         height: 100%;
+        width: 100%;
 
         &::-webkit-scrollbar {
             width: 5px;
@@ -22,6 +23,7 @@
 
         >.basket {
             display: flex;
+            position: relative;
             justify-content: space-between;
             background: white;
             padding: 10px 15px;
@@ -42,7 +44,8 @@
                 }
 
                 >.delete_basket {
-                    padding-left: 30px;
+                    position: absolute;
+                    right: 25px;
                 }
             }
 
@@ -96,8 +99,6 @@
             box-shadow: rgba(6, 5, 50, 0.1) 0px -2px 4px;
 
             >.subtotal {
-                display: flex;
-                flex-direction: column;
                 padding: 15px;
                 gap: 10px;
 
@@ -130,16 +131,16 @@
                         transition: all 0.3s ease;
                         width: 100%;
                         height: 48px;
-    
+
                         >svg {
                             position: absolute;
                             right: 20px;
                             transition: all 0.3s ease;
                         }
-    
+
                         &:hover {
                             background-color: rgb(232, 97, 0);
-    
+
                             >svg {
                                 transform: translateX(5px);
                             }
