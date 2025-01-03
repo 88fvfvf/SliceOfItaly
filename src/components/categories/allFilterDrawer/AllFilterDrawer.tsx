@@ -15,8 +15,6 @@ const AllFilterDrawer = () => {
         setOpen(false);
     };
 
-    console.log(open);
-
     return (
         <div className="allFilter">
             <div onClick={showDrawer}>

@@ -21,7 +21,7 @@ const Order = ({ basket }: IBasket) => {
             <div className='order'>
                 <div className="order_basket">
                     <div className="basket_header">
-                        <h2>1. Корзина</h2>
+                        <h3>1. Корзина</h3>
                         <span onClick={() => dispatch(deleteAll())}>
                             <RiDeleteBinLine />
                             <span>Очистить корзину</span>
@@ -48,20 +48,22 @@ const Order = ({ basket }: IBasket) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="cart_price">
-                                    <h3>{basket.finalPrice} ₽ </h3>
-                                </div>
-                                <div className="cart_amount">
-                                    <div className="amount_minus">
-                                        <FaMinus color='#FE5F00' onClick={() => dispatch(minusBasket(basket))} />
+                                <div className="price_current">
+                                    <div className="cart_price">
+                                        <h3>{basket.finalPrice} ₽ </h3>
                                     </div>
-                                    <h3>{basket.count}</h3>
-                                    <div className="amount_plus">
-                                        <FaPlus color='#FE5F00' onClick={() => dispatch(addBasket(basket))} />
+                                    <div className="cart_amount">
+                                        <div className="amount_minus">
+                                            <FaMinus color='#FE5F00' onClick={() => dispatch(minusBasket(basket))} />
+                                        </div>
+                                        <h3>{basket.count}</h3>
+                                        <div className="amount_plus">
+                                            <FaPlus color='#FE5F00' onClick={() => dispatch(addBasket(basket))} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="cart_delete" onClick={() => dispatch(deleteBasket(basket))}>
-                                    <RxCross2 cursor={'pointer'} />
+                                    <div className="cart_delete" onClick={() => dispatch(deleteBasket(basket))}>
+                                        <RxCross2 cursor={'pointer'} />
+                                    </div>
                                 </div>
                             </div>
                         )

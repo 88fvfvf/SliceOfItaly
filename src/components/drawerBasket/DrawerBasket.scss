@@ -35,12 +35,18 @@
                 margin-bottom: 10px;
                 gap: 10px;
 
-                >.details p {
-                    display: flex;
-                    flex-direction: column;
-                    color: rgb(92, 99, 112);
-                    font-size: 12px;
-                    width: 260px;
+                >.details {
+                    >.basket_title {
+                        width: 280px;
+                    }
+
+                    >p {
+                        display: flex;
+                        flex-direction: column;
+                        color: rgb(92, 99, 112);
+                        font-size: 12px;
+                        width: 260px;
+                    }
                 }
 
                 >.delete_basket {

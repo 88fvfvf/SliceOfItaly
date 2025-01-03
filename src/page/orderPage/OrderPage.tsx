@@ -14,7 +14,7 @@ const OrderPage = () => {
                     <>
                         <OrderHeader />
                         <div className='OrderPage' style={{ paddingTop: 20 }}>
-                            <h1>Оформление заказа</h1>
+                            <h2>Оформление заказа</h2>
                             <Order basket={basket} />
                         </div>
                     </>

@@ -6,7 +6,11 @@
 }
 
 .steps {
-    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
 }
 
 .ant-steps-icon>span>svg {
@@ -30,4 +34,20 @@
 .ant-steps .ant-steps-item-process .ant-steps-item-icon {
     background-color: #FE5F00 !important;
     border-color: #FE5F00 !important;
+}
+
+@media (max-width: 770px) {
+    .OrderHeader {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 575px) {
+    .steps {
+        display: none;
+    }
 }
