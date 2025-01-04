@@ -8,7 +8,11 @@ import OrderHeader from './orderHeader/OrderHeader'
 const OrderPage = () => {
     const { basket } = useAppSelector(state => state.basketSlice)
     return (
-        <>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh'
+        }}>
             <div className='container'>
                 {basket.length > 0 ? (
                     <>
@@ -21,13 +25,15 @@ const OrderPage = () => {
                 ) : (
                     <>
                         <Header />
-                        <Empty />
+                        <div style={{ paddingTop: 100 }}>
+                            <Empty />
+                        </div>
                     </>
                 )
                 }
             </div>
             <Footer />
-        </>
+        </div>
     )
 }
 

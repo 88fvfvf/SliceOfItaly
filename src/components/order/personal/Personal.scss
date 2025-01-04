@@ -46,14 +46,10 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 745px) {
     .personal>.personal_form>form {
         justify-content: center;
-
-        // >div div {
-        //     margin-bottom: 0;
-        //     gap: 0;
-        // }
+        flex-direction: column;
     }
 }
 
