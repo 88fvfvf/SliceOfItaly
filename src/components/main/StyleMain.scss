@@ -1,5 +1,6 @@
 main {
     display: flex;
+    padding-inline: 20px;
 
     >.container {
 
@@ -36,7 +37,7 @@ main {
 
 @media (max-width: 900px) {
     .filter__main_block {
-        >section{
+        >section {
             display: none;
         }
     }

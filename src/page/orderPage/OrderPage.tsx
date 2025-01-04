@@ -13,7 +13,7 @@ const OrderPage = () => {
                 {basket.length > 0 ? (
                     <>
                         <OrderHeader />
-                        <div className='OrderPage' style={{ paddingTop: 20 }}>
+                        <div className='OrderPage' style={{ padding: 20 }}>
                             <h2>Оформление заказа</h2>
                             <Order basket={basket} />
                         </div>

@@ -5,7 +5,7 @@ const Address = () => {
     return (
         <div className='address'>
             <div className="address_header">
-                <h2>3. Адрес доставки</h2>
+                <h3>3. Адрес доставки</h3>
             </div>
             <div className="address_info">
                 <Form>

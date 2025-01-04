@@ -5,7 +5,7 @@ const Personal = () => {
     return (
         <div className="personal">
             <div className="personal_header">
-                <h2>2. Персональная информация</h2>
+                <h3>2. Персональная информация</h3>
             </div>
             <div className="personal_form">
                 <Form>

@@ -5,7 +5,7 @@ import './HeadeStyler.css'
 
 const Header = () => {
     return (
-        <header>
+        <header style={{ paddingInline: '20px' }}>
             <div className="container">
                 <div className="allheader">
                     <HeaderLeft />
