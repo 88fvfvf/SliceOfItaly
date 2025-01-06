@@ -16,7 +16,7 @@ const Router = () => {
             <NotFound
                 title='Доступ запрещён'
                 paragraph='Данную страницу могут просматривать только авторизованные пользователи'
-                SvgIcon={AccessDenied}
+                SvgIcon={<AccessDenied />}
             />
     }
 
@@ -33,7 +33,7 @@ const Router = () => {
                             <NotFound
                                 title="Страница не найдена"
                                 paragraph="Проверьте корректность введённого адреса или повторите попытку позже"
-                                SvgIcon={NotFoundIcon} />
+                                SvgIcon={<NotFoundIcon />} />
                         } />
                     <Route
                         path='profile'

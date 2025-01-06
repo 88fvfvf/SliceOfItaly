@@ -7,7 +7,7 @@ import './NotFound.css';
 interface NotFoundProps {
     title: string
     paragraph: string
-    SvgIcon: React.ComponentType
+    SvgIcon: React.ReactNode;
 }
 
 const NotFound = ({ title, paragraph, SvgIcon }: NotFoundProps) => {
@@ -36,7 +36,7 @@ const NotFound = ({ title, paragraph, SvgIcon }: NotFoundProps) => {
                     </div>
                 </div>
                 <div className="found_icon">
-                    <SvgIcon />
+                    {SvgIcon}
                 </div>
             </div>
         </div>
