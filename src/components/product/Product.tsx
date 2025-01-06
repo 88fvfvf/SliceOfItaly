@@ -7,6 +7,7 @@ import './product.scss';
 import NotFound from "../../page/NotFound/NotFound";
 import LoadSpin from "../loadSpin/LoadSpin";
 import Footer from "../footer/Footer";
+import { NotFoundIcon } from "../../../public/svg/icone";
 
 const Product = () => {
     const { title } = useParams<{ title: string }>()
@@ -15,7 +16,7 @@ const Product = () => {
     const productData = products && products.length > 0 ? products.find(product => product.title === title) : null;
 
     if (isLoading) return <LoadSpin />;
-    if (isError || !productData) return <NotFound />;
+    if (isError || !productData) return <NotFound title="Страница не найдена" paragraph="Проверьте корректность введённого адреса или повторите попытку позже" SvgIcon={<NotFoundIcon />} />;
 
     return (
         <div className="Product">
