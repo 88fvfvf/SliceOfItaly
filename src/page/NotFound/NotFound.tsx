@@ -1,10 +1,16 @@
-import { NotFoundIcon } from "../../../public/svg/icone"
 import { BsArrowLeftShort } from "react-icons/bs";
-import './NotFound.css'
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import './NotFound.css';
 
-const NotFound = () => {
+
+interface NotFoundProps {
+    title: string
+    paragraph: string
+    SvgIcon: React.ComponentType
+}
+
+const NotFound = ({ title, paragraph, SvgIcon }: NotFoundProps) => {
     const clickRefresh = () => {
         location.reload()
     }
@@ -14,9 +20,9 @@ const NotFound = () => {
             <div className="found">
                 <div className="found_recomend">
                     <div className="found_info">
-                        <h1>Страница не найдена</h1>
+                        <h1>{title}</h1>
                         <p>
-                            Проверьте корректность введённого адреса или повторите попытку.
+                            {paragraph}
                         </p>
                     </div>
                     <div className="found_buttons">
@@ -30,7 +36,7 @@ const NotFound = () => {
                     </div>
                 </div>
                 <div className="found_icon">
-                    <NotFoundIcon />
+                    <SvgIcon />
                 </div>
             </div>
         </div>

@@ -1,0 +1,29 @@
+.log__container {
+
+    >a>.log__container__user,
+    .log__container__login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #FE5F1E;
+        transition: all 0.2s ease;
+        border-radius: 15px;
+        background: none;
+        color: #FE5F1E;
+        cursor: pointer;
+        font-size: 16px;
+        width: 116px;
+        height: 40px;
+        text-decoration: none;
+        gap: 5px;
+
+        >span {
+            font-weight: 500;
+        }
+
+        &:hover {
+            background-color: #FE5F1E;
+            color: white;
+        }
+    }
+}

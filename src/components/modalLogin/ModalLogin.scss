@@ -1,0 +1,132 @@
+.modal {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    >.modalLogin {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 30px;
+        width: 450px;
+        height: 580px;
+
+        >.closeModal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+        }
+
+        >.loginVia {
+            position: absolute;
+            background-color: #fff;
+            text-align: center;
+            width: 95px;
+            top: 396px;
+        }
+
+        >.modalTitle {
+            display: flex;
+            flex-direction: column;
+            width: 370px;
+            padding-bottom: 20px;
+
+            >p {
+                color: #b1b1b1;
+            }
+        }
+
+        >form {
+
+            >div {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                >label {
+                    font-family: 'Nunito';
+
+                    >span {
+                        color: #FE5F1E;
+                    }
+                }
+
+                >input {
+                    border: 1px solid #d0d0d0;
+                    font-size: 16px;
+                    padding-left: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 15px;
+                    width: 353px;
+                    height: 48px;
+
+                    &:focus-visible {
+                        outline: 1px solid #FE5F1E;
+                    }
+
+                    &::placeholder {
+                        font-family: 'Nunito';
+                    }
+                }
+            }
+
+            >button {
+                background: #FE5F1E;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 10px;
+                border: none;
+                width: 100%;
+                height: 45px;
+                cursor: pointer;
+            }
+        }
+
+        >.google,
+        .registration {
+            width: 370px;
+
+            >button {
+                font-size: 16px;
+                border-radius: 10px;
+                border: none;
+                width: 100%;
+                height: 45px;
+                cursor: pointer;
+            }
+        }
+
+        >.google button {
+            background-color: rgba(254, 95, 30, 0.1);
+            transition: all 0.3s ease;
+            color: #FE5F1E;
+
+            &:hover {
+                background-color: rgba(254, 95, 30, 0.2);
+            }
+        }
+
+        .registration button {
+            background: none;
+            border: 1px solid #FE5F1E;
+            color: #FE5F1E;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+
+            &:hover {
+                background-color: rgba(254, 95, 30, 0.1);
+                color: #FE5F1E;
+            }
+        }
+    }
+}
