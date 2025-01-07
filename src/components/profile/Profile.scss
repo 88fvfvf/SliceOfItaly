@@ -1,0 +1,15 @@
+.profile {
+
+    >.info_profile {
+        display: flex;
+        align-items: center;
+        padding-top: 20px;
+        gap: 10px;
+
+        >img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    }
+}

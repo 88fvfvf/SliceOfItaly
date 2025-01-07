@@ -6,7 +6,7 @@ import Login from './login/Login'
 
 const Header = () => {
     return (
-        <header style={{ paddingInline: '20px' }}>
+        <header>
             <div className="container">
                 <div className="allheader">
                     <HeaderLeft />

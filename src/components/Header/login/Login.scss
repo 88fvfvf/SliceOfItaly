@@ -1,7 +1,8 @@
 .log__container {
 
+
     >a>.log__container__user,
-    .log__container__login {
+    .log__container__login,.loading {
         display: flex;
         justify-content: center;
         align-items: center;

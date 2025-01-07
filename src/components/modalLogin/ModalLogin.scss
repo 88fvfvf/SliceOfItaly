@@ -10,7 +10,8 @@
     top: 0;
     left: 0;
 
-    >.modalLogin {
+    >.modalLogin,
+    .modalRegist {
         display: flex;
         position: relative;
         justify-content: center;
@@ -43,6 +44,20 @@
 
             >p {
                 color: #b1b1b1;
+            }
+
+        }
+
+        >.login button {
+            background: none;
+            border: 1px solid #FE5F1E !important;
+            color: #FE5F1E;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+
+            &:hover {
+                background-color: rgba(254, 95, 30, 0.1);
+                color: #FE5F1E;
             }
         }
 
@@ -93,7 +108,8 @@
         }
 
         >.google,
-        .registration {
+        .registration,
+        .login {
             width: 370px;
 
             >button {
@@ -129,4 +145,5 @@
             }
         }
     }
+
 }
