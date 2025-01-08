@@ -10,15 +10,17 @@ import { Firestore, getFirestore } from 'firebase/firestore';
 import { createContext } from 'react';
 
 // Firebase configuration
+// Firebase configuration using environment variables
 const firebaseConfig = {
-    apiKey: "AIzaSyDNWzfXKj3qe20uUlEnjvdF7Pfkq5l7vYk",
-    authDomain: "sliceofitaly-f829c.firebaseapp.com",
-    projectId: "sliceofitaly-f829c",
-    storageBucket: "sliceofitaly-f829c.firebasestorage.app",
-    messagingSenderId: "728372266742",
-    appId: "1:728372266742:web:3cd4fd0d15d8756ed4ced7",
-    measurementId: "G-SYGJEMWJ61"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

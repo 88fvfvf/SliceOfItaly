@@ -18,6 +18,9 @@ const NotFound = ({ title, paragraph, SvgIcon }: NotFoundProps) => {
         <div className="container">
             <Header />
             <div className="found">
+                <div className="found_icon">
+                    {SvgIcon}
+                </div>
                 <div className="found_recomend">
                     <div className="found_info">
                         <h1>{title}</h1>
@@ -35,9 +38,7 @@ const NotFound = ({ title, paragraph, SvgIcon }: NotFoundProps) => {
                         <button onClick={clickRefresh}>Обновить</button>
                     </div>
                 </div>
-                <div className="found_icon">
-                    {SvgIcon}
-                </div>
+
             </div>
         </div>
     )
