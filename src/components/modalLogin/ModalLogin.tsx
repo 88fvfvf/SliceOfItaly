@@ -1,4 +1,4 @@
-import { Divider, message } from 'antd';
+import { Divider } from 'antd';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { IoClose } from "react-icons/io5";
@@ -13,7 +13,6 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginMessage, setLoginMessage] = useState("");
-    const [messageApi, contextHolder] = message.useMessage();
 
     const firebaseContext = useContext(ContextFirebase);
     // Проверяем, что контекст не равен null
@@ -34,10 +33,6 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
 
             // Получение информации о пользователе
             const user = result.user;
-            messageApi.open({
-                type: 'success',
-                content: `Вы успешно вошли как ${user.displayName}!`
-            })
             closeModal();
         } catch (error) {
             console.error('Error during Google sign-in:', error);
@@ -54,73 +49,74 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                 setLoginMessage("Email не подтверждён. Проверьте почту.");
                 return;
             }
-            setLoginMessage("Вы успешно вошли в систему!"); // Выводим сообщение об успешной аутентификации
-        } catch (e: any) {
-            setLoginMessage(e.message);
+            closeModal()
+        } catch {
+            setLoginMessage("E-Mail или Пароль не верный");
         }
     }
 
     return (
-        <div className="modal">
-            {contextHolder}
-            {isRegist ? (
-                <>
-                    <Regist onLogin={() => setIsRegist(false)} closeModal={() => closeModal()} />
-                </>
-            ) : (
-                <>
-                    <div className="modalLogin">
-                        <div className="closeModal" onClick={closeModal}>
-                            <IoClose size={25} cursor={'pointer'} />
-                        </div>
-                        <div className="modalTitle">
-                            <h2>Вход в аккаунт</h2>
-                            <p>Введите свою почту, чтобы войти в <br /> свой аккаунт</p>
-                        </div>
-                        <form onSubmit={handleLogin}>
-                            <div>
-                                <label htmlFor="email">E-Mail <span>*</span>:</label>
-                                <input
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    autoComplete="email"
-                                    placeholder="sliceOfItaly@gmail.com"
-                                    required
-                                />
+        <div>
+            <div className="modal">
+                {isRegist ? (
+                    <>
+                        <Regist onLogin={() => setIsRegist(false)} closeModal={() => closeModal()} />
+                    </>
+                ) : (
+                    <>
+                        <div className="modalLogin">
+                            <div className="closeModal" onClick={closeModal}>
+                                <IoClose size={25} cursor={'pointer'} />
                             </div>
-                            <div>
-                                <label htmlFor="password">Пароль <span>*</span>:</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    autoComplete="current-password"
-                                    placeholder="Введите пароль"
-                                    required
-                                />
+                            <div className="modalTitle">
+                                <h2>Вход в аккаунт</h2>
+                                <p>Введите свою почту, чтобы войти в <br /> свой аккаунт</p>
                             </div>
-                            <button type="submit">Войти</button>
-                            <p>{loginMessage}</p>
-                        </form>
-                        <Divider />
-                        <div className="loginVia">
-                            <p>Войти через</p>
-                        </div>
-                        <div className="google">
-                            <button onClick={googleLogIn}>Войти через Google</button>
-                        </div>
-                        <div className="registration">
-                            <button onClick={() => setIsRegist(true)}>Регистрация</button>
-                        </div>
-                    </div >
-                </>
-            )}
-        </div >
+                            <form onSubmit={handleLogin}>
+                                <div>
+                                    <label htmlFor="email">E-Mail <span>*</span>:</label>
+                                    <input
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        autoComplete="email"
+                                        placeholder="sliceOfItaly@gmail.com"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password">Пароль <span>*</span>:</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        autoComplete="current-password"
+                                        placeholder="Введите пароль"
+                                        required
+                                    />
+                                </div>
+                                <button type="submit">Войти</button>
+                                <p style={{ color: '#FE5F1E' }}>{loginMessage}</p>
+                            </form>
+                            <Divider />
+                            <div className="loginVia">
+                                <p>Войти через</p>
+                            </div>
+                            <div className="google">
+                                <button onClick={googleLogIn}>Войти через Google</button>
+                            </div>
+                            <div className="registration">
+                                <button onClick={() => setIsRegist(true)}>Регистрация</button>
+                            </div>
+                        </div >
+                    </>
+                )}
+            </div >
+        </div>
     );
 };
 

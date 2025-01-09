@@ -37,7 +37,6 @@ type FirebaseContextType = {
 export const ContextFirebase = createContext<FirebaseContextType | null>(null);
 
 const rootElement = document.getElementById('root');
-
 if (rootElement) {
     const root = createRoot(rootElement);
     root.render(
@@ -50,5 +49,5 @@ if (rootElement) {
         </Provider>
     );
 } else {
-    console.error("Element with id 'root' not found in the document.");
+    console.error('Failed to find the root element');
 }

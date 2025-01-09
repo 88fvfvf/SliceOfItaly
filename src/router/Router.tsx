@@ -23,7 +23,7 @@ const Router = () => {
 
     const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
         if (loading) {
-            return <LoadSpin />;
+            return <LoadSpin />; // Загружаем спиннер, если идёт загрузка
         }
 
         if (!user) {
@@ -46,8 +46,9 @@ const Router = () => {
             );
         }
 
-        return <>{children}</>;
+        return <>{children}</>; // Если всё в порядке, рендерим защищённую страницу
     };
+
 
     return (
         <HelmetProvider>
