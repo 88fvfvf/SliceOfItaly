@@ -1,15 +1,20 @@
+import { Divider, message } from 'antd';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import './ModalLogin.scss';
-import { Divider } from 'antd';
 import { IoClose } from "react-icons/io5";
-import Regist from './regist/Regist';
 import { ContextFirebase } from '../../main';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import './ModalLogin.scss';
+import Regist from './regist/Regist';
 
 interface ModalLoginProps {
     closeModal: () => void; // Проп для закрытия модального окна
 }
 const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loginMessage, setLoginMessage] = useState("");
+    const [messageApi, contextHolder] = message.useMessage();
+
     const firebaseContext = useContext(ContextFirebase);
     // Проверяем, что контекст не равен null
     if (!firebaseContext) {
@@ -29,15 +34,35 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
 
             // Получение информации о пользователе
             const user = result.user;
+            messageApi.open({
+                type: 'success',
+                content: `Вы успешно вошли как ${user.displayName}!`
+            })
             closeModal();
-            console.log(user);
         } catch (error) {
             console.error('Error during Google sign-in:', error);
         }
     }
 
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password); // Попытка входа в систему
+            const user = userCredential.user; // Получение информации о пользователе
+
+            if (!user.emailVerified) {
+                setLoginMessage("Email не подтверждён. Проверьте почту.");
+                return;
+            }
+            setLoginMessage("Вы успешно вошли в систему!"); // Выводим сообщение об успешной аутентификации
+        } catch (e: any) {
+            setLoginMessage(e.message);
+        }
+    }
+
     return (
         <div className="modal">
+            {contextHolder}
             {isRegist ? (
                 <>
                     <Regist onLogin={() => setIsRegist(false)} closeModal={() => closeModal()} />
@@ -52,16 +77,35 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                             <h2>Вход в аккаунт</h2>
                             <p>Введите свою почту, чтобы войти в <br /> свой аккаунт</p>
                         </div>
-                        <form>
+                        <form onSubmit={handleLogin}>
                             <div>
                                 <label htmlFor="email">E-Mail <span>*</span>:</label>
-                                <input type="email" id="email" name="email" autoComplete="email" placeholder="sliceOfItaly@gmail.com" required />
+                                <input
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    autoComplete="email"
+                                    placeholder="sliceOfItaly@gmail.com"
+                                    required
+                                />
                             </div>
                             <div>
                                 <label htmlFor="password">Пароль <span>*</span>:</label>
-                                <input type="password" id="password" name="password" autoComplete="current-password" placeholder="Введите пароль" required />
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    autoComplete="current-password"
+                                    placeholder="Введите пароль"
+                                    required
+                                />
                             </div>
                             <button type="submit">Войти</button>
+                            <p>{loginMessage}</p>
                         </form>
                         <Divider />
                         <div className="loginVia">

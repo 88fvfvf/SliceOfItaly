@@ -43,11 +43,22 @@ const Login = () => {
                 </div>
             ) : (
                 user ? (
-                    <Link to="/profile" className="log__container__login">
-                        <BsFillPersonFill size={20} />
-                        <p>Профиль</p>
-                    </Link>
+                    user.emailVerified ? (
+                        // Если пользователь подтвердил почту
+                        <Link to="/profile" className="log__container__login">
+                            <BsFillPersonFill size={20} />
+                            <p>Профиль</p>
+                        </Link>
+                    ) : (
+                        // Если пользователь не подтвердил почту
+                        <Link to="/profile" className="log__container__login">
+                            <div className="log__container__warning">
+                                <p>Подтвердите почту</p>
+                            </div>
+                        </Link>
+                    )
                 ) : (
+                    // Если пользователь не авторизован
                     <div className="log__container__login" onClick={() => setShowModal(true)}>
                         <TbLogin2 size={20} />
                         <p>Войти</p>
