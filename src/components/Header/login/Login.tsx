@@ -4,8 +4,8 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { TbLogin2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { ContextFirebase } from "../../../main";
-import ModalLogin from "../../modalLogin/ModalLogin";
 import "./Login.scss";
+import ModalLogin from "../../modal/ModalLogin";
 
 const Login = () => {
     const firebaseContext = useContext(ContextFirebase);

@@ -4,8 +4,9 @@ import { IoClose } from "react-icons/io5";
 import { ContextFirebase } from '../../main';
 import { Divider, message } from 'antd';
 import './ModalLogin.scss';
-import Regist from './regist/Regist';
+import Regist from './regist/ModalRegist';
 import { User } from 'firebase/auth';
+import { LuEyeClosed, LuEye } from "react-icons/lu";
 
 interface ModalLoginProps {
     closeModal: () => void;
@@ -16,6 +17,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
     const [password, setPassword] = useState("");
     const [loginMessage, setLoginMessage] = useState("");
     const [user, setUser] = useState<User | null>(null); // Состояние для хранения данных о пользователе
+    const [showPassword, setShowPassword] = useState(false)
 
     const firebaseContext = useContext(ContextFirebase);
     if (!firebaseContext) {
@@ -55,6 +57,10 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
         }
     };
 
+    const togglePasswordShow = () => {
+        setShowPassword((prev) => !prev)
+    }
+
     return (
         <div>
             <div className="modal">
@@ -86,7 +92,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                             <div>
                                 <label htmlFor="password">Пароль <span>*</span>:</label>
                                 <input
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     id="password"
                                     name="password"
                                     value={password}
@@ -95,6 +101,14 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                                     placeholder="Введите пароль"
                                     required
                                 />
+                                <div className='showPasswordIcon' onClick={togglePasswordShow}>
+                                    {showPassword ? (
+                                        <LuEye cursor={'pointer'} size={20} />
+                                    ) : (
+                                        <LuEyeClosed cursor={'pointer'} size={20} />
+                                    )
+                                    }
+                                </div>
                             </div>
                             <button type="submit">Войти</button>
                             <p style={{ color: '#FE5F1E' }}>{loginMessage}</p>

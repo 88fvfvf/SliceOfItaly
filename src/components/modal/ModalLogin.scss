@@ -21,6 +21,7 @@
         border-radius: 30px;
         width: 450px;
         height: 580px;
+        padding-block: 10px;
 
         >.closeModal {
             position: absolute;
@@ -33,7 +34,7 @@
             background-color: #fff;
             text-align: center;
             width: 95px;
-            top: 396px;
+            top: 406px;
         }
 
         >.modalTitle {
@@ -62,9 +63,13 @@
         }
 
         >form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             >div {
                 display: flex;
+                position: relative;
                 flex-direction: column;
                 gap: 15px;
 
@@ -93,6 +98,25 @@
                         font-family: 'Nunito';
                     }
                 }
+                >.showPasswordIcon{
+                    position: absolute;
+                    top: 53px;
+                    right: 20px;
+                }
+
+            }
+            >.passwordControl {
+                position: relative;
+
+                >.registPassShow{
+                    position: absolute;
+                    top: 53px;
+                    right: 20px;
+                }
+            }
+
+            >.errorRegist {
+                text-align: center;
             }
 
             >button {
@@ -101,6 +125,7 @@
                 font-size: 16px;
                 border-radius: 10px;
                 border: none;
+                max-width: 370px;
                 width: 100%;
                 height: 45px;
                 cursor: pointer;

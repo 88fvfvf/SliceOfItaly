@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { ContextFirebase } from '../../../main';
 import '../ModalLogin.scss';
+import { LuEye, LuEyeClosed } from 'react-icons/lu';
 
 interface RegistProps {
     onLogin: () => void; // Проп для переключения на окно входа
@@ -11,22 +12,24 @@ interface RegistProps {
 }
 
 const Regist = ({ onLogin, closeModal }: RegistProps) => {
-    const firebaseContext = useContext(ContextFirebase);
-
-    if (!firebaseContext) {
-        console.error('Firebase context is not available');
-        return null;
-    }
-    const { auth } = firebaseContext;
-
     const [formData, setFormData] = useState({
         email: "",
         password: "",
         confirmPassword: "",
         name: "",
     });
-
     const [error, setError] = useState("");
+    const [registPassShow, setRegistPassShow] = useState(false)
+    const togglePasswordShow = () => {
+        setRegistPassShow((prev) => !prev)
+    }
+
+    const firebaseContext = useContext(ContextFirebase);
+    if (!firebaseContext) {
+        console.error('Firebase context is not available');
+        return null;
+    }
+    const { auth } = firebaseContext;
 
     const handleTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -54,8 +57,12 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
             message.success("Письмо с подтверждением отправлено на вашу почту");
             closeModal();
         } catch (e: any) {
-            setError(e.message);
-            message.error(e.message);
+            if (e.code === "auth/email-already-in-use") {
+                setError("Этот E-Mail уже зарегистрирован.")
+            } else {
+                setError(e.message);
+                message.error(e.message);
+            }
         }
     };
 
@@ -88,22 +95,30 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
                         required
                     />
                 </div>
-                <div>
+                <div className='passwordControl'>
                     <label htmlFor="password">Пароль <span>*</span>:</label>
                     <input
                         onChange={handleTarget}
-                        type="password"
+                        type={registPassShow ? 'text' : 'password'}
                         id="password"
                         name="password"
                         autoComplete="new-password"
                         required
                     />
+                    <div className='registPassShow' onClick={togglePasswordShow}>
+                        {registPassShow ? (
+                            <LuEye cursor={'pointer'} size={20} />
+                        ) : (
+                            <LuEyeClosed cursor={'pointer'} size={20} />
+                        )
+                        }
+                    </div>
                 </div>
                 <div>
                     <label htmlFor="confirmPassword">Подтвердите пароль <span>*</span>:</label>
                     <input
                         onChange={handleTarget}
-                        type="password"
+                        type={registPassShow ? 'text' : 'password'}
                         id="confirmPassword"
                         name="confirmPassword"
                         autoComplete="new-password"
@@ -111,7 +126,7 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
                     />
                 </div>
                 <button type="submit">Зарегистрироваться</button>
-                {error && <p className="error">{error}</p>}
+                {error && <p className='errorRegist' style={{ color: '#FE5F1E' }}>{error}</p>}
             </form>
 
             <div className="login">
