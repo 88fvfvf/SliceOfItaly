@@ -1,0 +1,21 @@
+.tabsProfile {
+    padding-top: 20px;
+}
+
+/* Для текста активной вкладки */
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #FE5F1E !important;
+    /* Цвет текста активной вкладки */
+}
+
+/* Для текста неактивной вкладки */
+.custom-tabs .ant-tabs-tab .ant-tabs-tab-btn {
+    color: #000;
+    /* Цвет текста неактивных вкладок */
+}
+
+/* При наведении */
+.custom-tabs .ant-tabs-tab:hover .ant-tabs-tab-btn {
+    color: #FE5F1E;
+    /* Цвет текста при наведении */
+}

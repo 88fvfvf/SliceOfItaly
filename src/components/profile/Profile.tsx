@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ContextFirebase } from '../../main';
 import Header from '../Header/Header';
-import { FaRegUserCircle } from "react-icons/fa";
 import './Profile.scss';
+import TabsProfile from './tabsProfile/TabsProfile';
 
 const Profile = () => {
     const firebaseContext = useContext(ContextFirebase);
@@ -23,16 +23,7 @@ const Profile = () => {
                 <h1>Loading...</h1>
             ) : (
                 <>
-                    <h1>Профиль</h1>
-                    <div className="info_profile">
-                        {user?.photoURL ? (
-                            <img src={user.photoURL} alt="user" />
-                        ) : (
-                            <FaRegUserCircle size={40} />
-                        )}
-                        <h2>{user?.displayName}</h2>
-                    </div>
-                    <button onClick={() => auth.signOut()}>Выйти</button>
+                    <TabsProfile />
                 </>
             )}
         </div>

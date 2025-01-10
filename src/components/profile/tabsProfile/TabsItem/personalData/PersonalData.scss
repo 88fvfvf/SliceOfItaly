@@ -1,0 +1,64 @@
+.PersonalData {
+
+    .allInputData {
+        display: flex;
+        justify-content: center;
+
+        >.personal_input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #EDEDED;
+            border-radius: 20px;
+            padding: 20px;
+            width: 370px;
+
+            >div {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+
+                >input {
+                    border: 1px solid #d0d0d0;
+                    font-size: 16px;
+                    padding-left: 15px;
+                    margin-bottom: 15px;
+                    border-radius: 15px;
+                    width: 353px;
+                    height: 48px;
+
+                    &:focus-visible {
+                        outline: 1px solid #FE5F1E;
+                    }
+
+                    &::placeholder {
+                        font-family: 'Nunito';
+                    }
+                }
+
+                >label {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+    }
+
+    >button {
+        background-color: rgb(243, 244, 246);
+        border-radius: 20px;
+        margin-top: 10px;
+        font-size: 14px;
+        border: none;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: #FE5F1E !important;
+        }
+    }
+}

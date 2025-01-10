@@ -1,0 +1,14 @@
+.ant-table-content {
+    >table>tbody>tr>td>a {
+        color: #FE5F1E !important;
+        text-decoration: underline !important;
+    }
+}
+
+.ant-pagination .ant-pagination-item-active {
+    border-color: #FE5F1E !important;
+
+    >a {
+        color: #FE5F1E !important;
+    }
+}
