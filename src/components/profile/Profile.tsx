@@ -14,7 +14,7 @@ const Profile = () => {
         return null; // Можно вернуть null, если контекст не доступен
     }
     const { auth } = firebaseContext; // получаем объект auth из контекста
-    const [user, loading] = useAuthState(auth); // хук, который возвращает пользователя, загрузку и ошибку
+    const [loading] = useAuthState(auth); // хук, который возвращает пользователя, загрузку и ошибку
 
     return (
         <div className='profile'>
