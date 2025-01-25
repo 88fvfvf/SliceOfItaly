@@ -1,0 +1,170 @@
+$modal-background-color: rgba(0, 0, 0, 0.2);
+$modal-content-background: #fff;
+$modal-border-radius: 30px;
+$modal-padding: 20px;
+$scrollbar-color: rgb(255, 94, 0);
+$text-secondary: #B1B1B1;
+
+.modal_details {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: $modal-background-color;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    >.modal_container {
+        background-color: $modal-content-background;
+        border-radius: $modal-border-radius;
+        padding: $modal-padding;
+        max-width: 800px;
+        max-height: 700px;
+        min-height: 600px;
+        width: 100%;
+
+        >.modal_header {
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+
+            >.closeModalDetails {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            >h3 span {
+                color: #FE5F00;
+            }
+        }
+
+        >.modal_body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-block: 1px solid #EDEDED;
+            padding-block: 20px;
+            height: 430px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $scrollbar-color;
+                cursor: n-resize;
+                border-radius: 10px;
+            }
+
+            >.item {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #EDEDED;
+                padding: 15px;
+                gap: 30px;
+
+                >.item_img {
+                    width: 80px;
+
+                    >img {
+                        width: 100%;
+                    }
+                }
+
+                >.item_details {
+                    display: flex;
+
+                    >.details_desc {
+                        width: 350px;
+
+                        >span {
+                            color: $text-secondary;
+                        }
+                    }
+                }
+
+                >.details_sum {
+                    display: flex;
+                    font-size: 18px;
+                    gap: 5px;
+                }
+            }
+        }
+
+        >.modal_footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 70px;
+            gap: 10px;
+
+            >span {
+                font-size: 16px;
+            }
+        }
+    }
+
+    // Адаптивность
+    @media (max-width: 600px) {
+        >.modal_container {
+            padding: 15px;
+            max-width: 90%;
+            min-height: 500px;
+
+            >.modal_body {
+                height: 350px;
+
+                >.item {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+
+                    >.item_img {
+                        width: 100%;
+                        max-width: 100px;
+                    }
+
+                    >.item_details {
+                        max-width: 300px;
+
+                        >.details_desc {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
+            >.modal_footer {
+                flex-direction: column;
+                height: auto;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        >.modal_container {
+            border-radius: 20px;
+
+            >.modal_header {
+
+                >h3 {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

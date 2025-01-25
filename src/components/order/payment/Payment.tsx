@@ -1,10 +1,17 @@
+// Payment.tsx
+import React from 'react';
 import { useAppSelector } from '../../../hooks/hooks'
 import './Payment.scss'
 import { FaBoxOpen } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 
-const Payment = () => {
-    const totalPrice = useAppSelector(state => state.basketSlice.totalPrice)
+interface PaymentProps {
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const Payment: React.FC<PaymentProps> = ({ handleSubmit }) => {
+    const totalPrice = useAppSelector(state => state.basketSlice.totalPrice);
+
     return (
         <div className="payment">
             <div className="total">
@@ -32,10 +39,10 @@ const Payment = () => {
                 </div>
             </div>
             <div className="toPay">
-                <button>Перейти к оплате</button>
+                <button type='submit' onClick={() => handleSubmit}>Перейти к оплате</button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Payment
+export default Payment;

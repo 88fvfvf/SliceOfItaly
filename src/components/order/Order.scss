@@ -1,7 +1,7 @@
 .MakingOrder {
     display: flex;
-    position: relative;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
 
     >.order {
@@ -11,7 +11,7 @@
 
         >.order_basket {
             border-radius: 30px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+            border: 1px solid #c7c7c7;
 
             >.basket_header {
                 display: flex;

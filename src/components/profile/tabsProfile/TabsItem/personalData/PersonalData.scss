@@ -9,15 +9,24 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background-color: #EDEDED;
+            background-color: rgb(243, 244, 246);
             border-radius: 20px;
             padding: 20px;
             width: 370px;
 
             >div {
                 display: flex;
+                position: relative;
                 justify-content: center;
                 flex-direction: column;
+
+                >span{
+                    position: absolute;
+                    top: 40px;
+                    right: 15px;
+                    color: #FE5F1E;
+                    cursor: pointer;
+                }
 
                 >input {
                     border: 1px solid #d0d0d0;

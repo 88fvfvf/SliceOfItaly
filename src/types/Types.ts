@@ -30,3 +30,30 @@ export interface IIngredients {
     id: number,
     ingredients: string
 }
+
+// Data Type for OrderHistory
+
+export interface IUserData {
+    name: string;
+    email: string;
+    address: string;
+    extraInfo: string;
+    status: string;
+    timestamp: string;
+    totalPrice: number;
+}
+
+export interface DataType {
+    id: string;
+    basket?: IProducts[];
+    timestamp: string;
+    userData: IUserData;
+}
+// Data Type for ProcessingOrders
+export interface IProcessingOrders {
+    id: string;
+    userId: string;
+    basket: IProducts[];
+    totalPrice?: string;
+    status?: string;
+}

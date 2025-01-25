@@ -1,0 +1,21 @@
+.ant-modal-content {
+    >.ant-modal-body {
+
+        >.notification_body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+
+            >span {
+                font-size: 18px;
+            }
+
+            >.body_feedback {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    }
+}

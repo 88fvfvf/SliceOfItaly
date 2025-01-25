@@ -1,23 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useEffect, useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { TbLogin2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { ContextFirebase } from "../../../main";
-import "./Login.scss";
+import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 import ModalLogin from "../../modal/ModalLogin";
+import "./Login.scss";
+import { useNotifications } from "../../../hooks/useNotifications";
+import { Badge } from "antd";
 
 const Login = () => {
-    const firebaseContext = useContext(ContextFirebase);
-
-    // Проверяем, что контекст не null
-    if (!firebaseContext) {
-        console.error('Firebase context is not available');
-        return null; // Можно вернуть null, если контекст не доступен
-    }
-    const { auth } = firebaseContext; // получаем объект auth из контекста
-    const [user, loading] = useAuthState(auth); // хук, который возвращает пользователя, загрузку и ошибку
+    const { user, loading } = useFirebaseAuth()
     const [showModal, setShowModal] = useState(false)
+    const { user: userFirebase } = useFirebaseAuth();
+    const notifications = useNotifications(userFirebase?.uid || "");
 
     useEffect(() => {
         if (showModal) {
@@ -45,10 +40,13 @@ const Login = () => {
                 user ? (
                     user.emailVerified ? (
                         // Если пользователь подтвердил почту
-                        <Link to="/profile" className="log__container__login">
-                            <BsFillPersonFill size={20} />
-                            <p>Профиль</p>
-                        </Link>
+                        <Badge count={notifications.length} color="#FE5F1E">
+                            <Link to="/profile" className="log__container__login">
+                                <BsFillPersonFill size={20} />
+                                <p>Профиль</p>
+                            </Link>
+                        </Badge>
+
                     ) : (
                         // Если пользователь не подтвердил почту
                         <Link to="/profile" className="log__container__login">

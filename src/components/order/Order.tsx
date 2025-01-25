@@ -1,80 +1,77 @@
-import { FaMinus, FaPlus } from "react-icons/fa6";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { RxCross2 } from "react-icons/rx";
-import { useAppDispatch } from '../../hooks/hooks';
-import { addBasket, deleteAll, deleteBasket, minusBasket } from '../../store/basket/basket.slice';
-import { IProducts } from '../../types/Types';
-import './Order.scss';
-import Personal from "./personal/Personal";
+import { getDatabase, push, ref, serverTimestamp, set } from "firebase/database";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useFirebaseAuth } from "../../hooks/useFirebaseAuth";
+import { deleteAll } from "../../store/basket/basket.slice";
+import { IProducts } from "../../types/Types";
 import Address from "./address/Address";
+import "./Order.scss";
+import Basket from "./orderBasket/orderBasket";
 import Payment from "./payment/Payment";
+import Personal from "./personal/Personal";
 
 interface IBasket {
     basket: IProducts[]
 }
 
 const Order = ({ basket }: IBasket) => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const totalPrice = useAppSelector((state) => state.basketSlice.totalPrice);
+    const { user } = useFirebaseAuth();
+
+    const [userData, setUserData] = useState({
+        name: user?.displayName || "",
+        email: user?.email || "",
+        totalPrice: totalPrice,
+        address: "",
+        extraInfo: "",
+        status: "Принят",
+        timestamp: serverTimestamp(),
+    });
+
+    useEffect(() => {
+        setUserData((prevData) => ({
+            ...prevData,
+            totalPrice: totalPrice,
+        }));
+    }, [totalPrice]);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUserData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (user) {
+            try {
+                const db = getDatabase();
+                const ordersRef = ref(db, `orders/${user.uid}`);
+                const newOrderRef = push(ordersRef);
+                await set(newOrderRef, {
+                    userData: { ...userData, timestamp: serverTimestamp() },
+                    basket,
+                });
+                console.log("Order placed successfully");
+                dispatch(deleteAll());
+            } catch (err) {
+                console.error("Error placing order", err);
+            }
+        }
+    };
 
     return (
         <div className="MakingOrder">
-            <div className='order'>
-                <div className="order_basket">
-                    <div className="basket_header">
-                        <h3>1. Корзина</h3>
-                        <span onClick={() => dispatch(deleteAll())}>
-                            <RiDeleteBinLine />
-                            <span>Очистить корзину</span>
-                        </span>
-                    </div>
-                    {basket.map((basket) => {
-                        const uniqueKey = `${basket.id}_${basket.size}_${basket.type}_${basket.unit}_${basket.tasty.join(",")}`;
-                        return (
-                            <div className="basket_cart" key={uniqueKey}>
-                                <div className="cart_product">
-                                    <div className="cart_img">
-                                        <img src={basket.images[0 | basket.unit]} width={85} alt="cart image" />
-                                    </div>
-                                    <div className="cart_details">
-                                        <div className="cart_name">
-                                            <h3>{basket.title}</h3>
-                                        </div>
-                                        <p>
-                                            {basket.sizes && <p>{basket.size}, {basket.type} тесто, {basket.weightProduct}</p>}
-                                            {basket.units && <p>{basket.units[basket.unit]}</p>}
-                                        </p>
-                                        <div className="cart_toTasty">
-                                            {basket.tasty.length > 0 ? <p>+ {basket.tasty.join(",")}</p> : null}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="price_current">
-                                    <div className="cart_price">
-                                        <h3>{basket.finalPrice} ₽ </h3>
-                                    </div>
-                                    <div className="cart_amount">
-                                        <div className="amount_minus">
-                                            <FaMinus color='#FE5F00' onClick={() => dispatch(minusBasket(basket))} />
-                                        </div>
-                                        <h3>{basket.count}</h3>
-                                        <div className="amount_plus">
-                                            <FaPlus color='#FE5F00' onClick={() => dispatch(addBasket(basket))} />
-                                        </div>
-                                    </div>
-                                    <div className="cart_delete" onClick={() => dispatch(deleteBasket(basket))}>
-                                        <RxCross2 cursor={'pointer'} />
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-                <Personal />
-                <Address />
+            <div className="order">
+                <Basket basket={basket} clearBasket={() => dispatch(deleteAll())} />
+                <form onSubmit={handleSubmit}>
+                    <Personal user={user || null} handleInputChange={handleInputChange} />
+                    <Address userData={userData} handleInputChange={handleInputChange} />
+                    <Payment handleSubmit={handleSubmit} />
+                </form>
             </div>
-            <Payment />
         </div>
-    )
-}
+    );
+};
 
-export default Order
+export default Order;

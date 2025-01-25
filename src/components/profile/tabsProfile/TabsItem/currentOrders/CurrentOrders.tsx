@@ -1,85 +1,90 @@
-import { Card } from "antd";
-import './currentOrders.scss'
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useEffect, useState } from "react";
+import { useFirebaseAuth } from "../../../../../hooks/useFirebaseAuth";
+import { IProcessingOrders } from "../../../../../types/Types";
+import './currentOrders.scss';
+import OrderCard from "../../../../orderCard/OrderCard";
+
+export interface IUserData {
+    name: string;
+    email: string;
+    totalPrice: number;
+    address: string;
+    extraInfo: string;
+    status: string;
+}
 
 const CurrentOrders = () => {
+    const [orders, setOrders] = useState<IProcessingOrders[]>([]);
+    const [userData, setUserData] = useState<IUserData[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [activeOrderIndex, setActiveOrderIndex] = useState<number | null>(null);
+    const { user } = useFirebaseAuth()
+
+    useEffect(() => {
+        if (user) {
+            const db = getDatabase();
+            const orderRef = ref(db, `orders/${user.uid}`);
+
+            const unsubscribe = onValue(
+                orderRef,
+                (snapshot) => {
+                    const data = snapshot.val();
+                    const ordersArray: IProcessingOrders[] = [];
+                    const userDataArray: IUserData[] = [];
+
+                    if (data) {
+                        for (let orderId in data) {
+                            const order = data[orderId];
+                            ordersArray.push({ id: orderId, basket: order.basket || [] });
+                            userDataArray.push(order.userData || {});
+                        }
+                    }
+
+                    setOrders(ordersArray);
+                    setUserData(userDataArray);
+                },
+                (error) => {
+                    setError('Error fetching orders');
+                    console.error("Error fetching orders:", error);
+                }
+            );
+
+            return () => unsubscribe();
+        }
+    }, [user]);
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+    const openModal = (index: number) => setActiveOrderIndex(index);
+    const closeModal = () => setActiveOrderIndex(null);
+
     return (
         <div className="currentOrders">
-            <h1>
-                Текущие заказы
-            </h1>
+            <h1>Заказы в обработке</h1>
             <div className="card_orders">
-                <Card
-                    title="Номер заказа №1"
-                    extra={<a>Посмотреть процесс</a>}
-                >
-                    <div className="currentOrder_products">
-                        <div className="currentOrder_name">
-                            <h3>1.Чоризо фреш 25см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>2.Пепперони 30см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>3.Альфредо 35см</h3>
-                            <span>330₽</span>
-                        </div>
+                {orders.length > 0 ? (
+                    orders.map((order, index) => {
+                        const currentUserData = userData[index] || {};
+                        return (
+                            <OrderCard
+                                index={index}
+                                order={order}
+                                onOpenModal={() => openModal(index)}
+                                onCloseModal={closeModal}
+                                userData={currentUserData}
+                                isUser={true}
+                                isActive={activeOrderIndex === index}
+                                key={index}
+                            />
+                        );
+                    })
+                ) : (
+                    <div className="not_orders">
+                        <span>У вас нет текущих заказов</span>
                     </div>
-                    <button>Детали заказа</button>
-                </Card>
-                <Card
-                    title="Номер заказа №2"
-                    extra={<a>Посмотреть процесс</a>}
-                >
-                    <div className="currentOrder_products">
-                        <div className="currentOrder_name">
-                            <h3>1.Чоризо фреш 25см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>2.Пепперони 30см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>3.Альфредо 35см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>4.Альфредо 35см</h3>
-                            <span>330₽</span>
-                        </div>
-                    </div>
-                    <button>Детали заказа</button>
-                </Card>
-                <Card
-                    title="Номер заказа №3"
-                    extra={<a>Посмотреть процесс</a>}
-                >
-                    <div className="currentOrder_products">
-                        <div className="currentOrder_name">
-                            <h3>1.Чоризо фреш 25см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>2.Пепперони 30см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>3.Альфредо 35см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>4.Чоризо фреш 25см</h3>
-                            <span>330₽</span>
-                        </div>
-                        <div className="currentOrder_name">
-                            <h3>5.Пепперони 30см</h3>
-                            <span>330₽</span>
-                        </div>
-                    </div>
-                    <button className="currentOrderButton">Детали заказа</button>
-                </Card>
+                )}
             </div>
         </div>
     );

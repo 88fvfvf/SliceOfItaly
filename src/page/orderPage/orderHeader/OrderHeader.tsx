@@ -1,28 +1,12 @@
-import { Steps } from "antd";
-import HeaderLeft from "../../../components/Header/Left/HeaderLeft"
-import './OrderHeader.css'
+import HeaderLeft from '../../../components/Header/Left/HeaderLeft';
+import Login from '../../../components/Header/login/Login';
+import './OrderHeader.scss'
 
 const OrderHeader = () => {
     return (
         <div className="OrderHeader">
             <HeaderLeft />
-            <div className="steps">
-                <Steps
-                    current={1}
-                    labelPlacement="vertical"
-                    items={[
-                        {
-                            title: 'Корзина'
-                        },
-                        {
-                            title: 'Оформление заказа'
-                        },
-                        {
-                            title: 'Заказ принят'
-                        },
-                    ]}
-                />
-            </div>
+            <Login />
         </div>
     )
 }

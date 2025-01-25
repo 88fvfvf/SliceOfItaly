@@ -1,0 +1,72 @@
+.ProcessingOrders {
+
+    >.card_orders {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        >.ant-card {
+            max-width: 433px;
+            width: 100%;
+            height: fit-content;
+
+            >div>div>div>a {
+
+                color: #FE5F1E !important;
+            }
+        }
+
+        >.not_orders {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            width: 100%;
+            height: 50vh;
+        }
+    }
+}
+
+.ant-card-body {
+    >.currentOrder_products {
+
+        >.current {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dotted #EDEDED;
+            height: 30px;
+        }
+
+        .currentOrder_name {
+            display: flex;
+            justify-content: space-between;
+
+            >h3 {
+                font-weight: 400;
+            }
+        }
+    }
+
+    .currentOrder_details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+
+        >button {
+            background-color: rgb(243, 244, 246);
+            border-radius: 20px;
+            border: none;
+            float: right;
+            width: 120px;
+            height: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: #FE5F1E !important;
+            }
+        }
+    }
+}

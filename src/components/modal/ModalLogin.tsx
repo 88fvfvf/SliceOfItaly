@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { IoClose } from "react-icons/io5";
-import { ContextFirebase } from '../../main';
 import { Divider, message } from 'antd';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, User } from 'firebase/auth';
+import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import React, { useState } from 'react';
+import { IoClose } from "react-icons/io5";
+import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { useFirebaseAuth } from '../../hooks/useFirebaseAuth';
 import './ModalLogin.scss';
 import Regist from './regist/ModalRegist';
-import { User } from 'firebase/auth';
-import { LuEyeClosed, LuEye } from "react-icons/lu";
 
 interface ModalLoginProps {
     closeModal: () => void;
@@ -18,25 +18,36 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
     const [loginMessage, setLoginMessage] = useState("");
     const [user, setUser] = useState<User | null>(null); // Состояние для хранения данных о пользователе
     const [showPassword, setShowPassword] = useState(false)
-
-    const firebaseContext = useContext(ContextFirebase);
-    if (!firebaseContext) {
-        throw new Error("Firebase context is not available.");
-    }
-
-    const { auth } = firebaseContext;
+    const {auth} = useFirebaseAuth()
     const [isRegist, setIsRegist] = useState(false);
+    const db = getFirestore();
+
 
     const googleLogIn = async () => {
         try {
             const provider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            setUser(user); // Сохраняем данные пользователя
-            message.success('Вы успешно вошли через Google!');
+
+            // Проверяем, есть ли пользователь в Firestore
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (!userDoc.exists()) {
+                // Создаем новую запись, если пользователь не найден
+                await setDoc(userDocRef, {
+                    email: user.email,
+                    name: user.displayName || "Google User",
+                    role: "user", // По умолчанию роль "user"
+                    createdAt: new Date().toISOString(),
+                });
+            }
+
+            message.success("Вы успешно вошли через Google!");
             closeModal();
-        } catch (error) {
-            console.error('Error during Google sign-in:', error);
+        } catch (error: any) {
+            console.error("Ошибка при входе через Google:", error);
+            message.error("Ошибка входа через Google: " + error.message);
         }
     };
 
@@ -45,12 +56,26 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+
             if (!user.emailVerified) {
                 setLoginMessage("Email не подтверждён. Проверьте почту.");
                 return;
             }
+
+            // Проверяем роль пользователя в Firestore
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                if (userData.role === "admin") {
+                    message.success("Вы вошли как администратор!");
+                } else {
+                    message.success("Вы вошли как пользователь.");
+                }
+            } else {
+                message.error("Ошибка: пользователь не найден в базе данных.");
+            }
+
             setUser(user); // Сохраняем данные пользователя
-            message.success(`Вы вошли как ${user.displayName}`);
             closeModal();
         } catch {
             setLoginMessage("E-Mail или Пароль не верный");

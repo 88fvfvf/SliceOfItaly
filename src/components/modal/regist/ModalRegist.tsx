@@ -1,10 +1,11 @@
 import { message } from 'antd';
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
-import { useContext, useState } from 'react';
+import { doc, getFirestore, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { ContextFirebase } from '../../../main';
-import '../ModalLogin.scss';
 import { LuEye, LuEyeClosed } from 'react-icons/lu';
+import { useFirebaseAuth } from '../../../hooks/useFirebaseAuth';
+import '../ModalLogin.scss';
 
 interface RegistProps {
     onLogin: () => void; // Проп для переключения на окно входа
@@ -24,12 +25,7 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
         setRegistPassShow((prev) => !prev)
     }
 
-    const firebaseContext = useContext(ContextFirebase);
-    if (!firebaseContext) {
-        console.error('Firebase context is not available');
-        return null;
-    }
-    const { auth } = firebaseContext;
+    const {auth} = useFirebaseAuth()
 
     const handleTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -52,6 +48,15 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
 
             await updateProfile(user, { displayName: name });
             await sendEmailVerification(user);
+            const db = getFirestore();
+
+            // Сохранение пользователя в Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                email: user.email,
+                name: name,
+                role: "user", // По умолчанию роль "user"
+                createdAt: new Date().toISOString(),
+            });
 
             setError("");
             message.success("Письмо с подтверждением отправлено на вашу почту");
@@ -65,6 +70,7 @@ const Regist = ({ onLogin, closeModal }: RegistProps) => {
             }
         }
     };
+
 
     return (
         <div className="modalRegist">
