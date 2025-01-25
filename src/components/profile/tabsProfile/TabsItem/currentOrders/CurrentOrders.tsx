@@ -36,7 +36,7 @@ const CurrentOrders = () => {
                     if (data) {
                         for (let orderId in data) {
                             const order = data[orderId];
-                            ordersArray.push({ id: orderId, basket: order.basket || [] });
+                            ordersArray.push({ id: orderId, basket: order.basket || [], userId: user.uid });
                             userDataArray.push(order.userData || {});
                         }
                     }
