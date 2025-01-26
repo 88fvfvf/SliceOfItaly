@@ -25,6 +25,5 @@ export const firestore = getFirestore(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app); // Получаем экземпляр Firebase Storage
 
-
 // Экспорт приложения (если нужно в будущем)
 export default app;
