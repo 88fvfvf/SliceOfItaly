@@ -1,8 +1,12 @@
 .payment {
+    position: sticky;
     border: 1px solid #c7c7c7;
     border-radius: 30px;
-    margin-top: 50px;
     height: 290px;
+    max-width: 450px;
+    width: 100%;
+    top: 20px;
+    left: 0;
 
     >.total {
         padding: 20px 40px;
@@ -11,6 +15,7 @@
     >.payment_body {
         padding: 20px 40px;
         border-block: 1px solid #c7c7c7;
+        font-family: 'Nunito';
 
         >div {
             display: flex;
@@ -20,7 +25,26 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: 5px;
+                width: 100%;
                 gap: 5px;
+
+                >.product_dt {
+                    display: flex;
+                    align-items: baseline;
+                    flex-grow: 1;
+
+                    &::after {
+                        content: '';
+                        width: 100%;
+                        margin-inline: 0.3em;
+                        border-bottom: 2px dotted #DFDFDF;
+                    }
+                }
+
+                .free {
+                    color: #FE5F00;
+                }
             }
         }
     }
@@ -28,7 +52,7 @@
     >.toPay {
         display: flex;
         justify-content: center;
-        padding: 20px;
+        padding-top: 15px;
 
         >button {
             background: #FE5F00;
@@ -50,11 +74,10 @@
     }
 }
 
-@media (max-width: 1220px) {
+@media (max-width: 1280px) {
     .payment {
         margin-top: 50px;
         max-width: 752px;
         width: 100%;
-        height: 100%;
     }
 }

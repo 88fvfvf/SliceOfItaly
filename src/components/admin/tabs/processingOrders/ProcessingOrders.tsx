@@ -4,6 +4,7 @@ import { useOrders } from "../../../../hooks/useOrders";
 import OrderCard from "../../../orderCard/OrderCard";
 import { updateOrderStatus } from "./api/ordersApi";
 import "./ProcessingOrders.scss";
+import NotActivity from "../../notActivity/NotActivity";
 
 const ProcessingOrders = () => {
     const { user } = useFirebaseAuth();
@@ -40,9 +41,7 @@ const ProcessingOrders = () => {
                         />
                     ))
                 ) : (
-                    <div className="not_orders">
-                        <span>нет заказов в обработке</span>
-                    </div>
+                    <NotActivity text='Нет заказов в обработке' />
                 )}
             </div>
         </div>

@@ -1,7 +1,8 @@
 import { ColumnsType } from 'antd/es/table';
 import { DataType } from '../../../../../types/Types';
+import { Button } from 'antd';
 
-export const columns: ColumnsType<DataType> = [
+export const columns = (onViewDetails: (record: DataType) => void): ColumnsType<DataType> => [
     {
         title: 'Адрес доставки',
         dataIndex: 'address',
@@ -21,6 +22,11 @@ export const columns: ColumnsType<DataType> = [
     {
         title: 'Подробнее',
         dataIndex: 'more',
-        key: 'more'
+        key: 'more',
+        render: (_, record) => (
+            <Button type="link" onClick={() => onViewDetails(record)}>
+                Подробнее
+            </Button>
+        ),
     },
 ];

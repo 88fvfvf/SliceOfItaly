@@ -13,22 +13,28 @@ const Personal = ({ handleInputChange, user }: IPersonal) => {
                 <h3>2. Персональная информация</h3>
             </div>
             <div className="personal_form">
-                <input
-                    name='name'
-                    placeholder="Имя получателя"
-                    value={user?.displayName || ''}
-                    onChange={handleInputChange}
-                    disabled
-                    required
-                />
-                <input
-                    name='email'
-                    placeholder="E-Mail получателя"
-                    value={user?.email || ''}
-                    disabled    
-                    onChange={handleInputChange}
-                    required
-                />
+                <div className="form_name">
+                    <label htmlFor="name">Имя получателя</label>
+                    <input
+                        name='name'
+                        placeholder="Имя получателя"
+                        value={user?.displayName || ''}
+                        onChange={handleInputChange}
+                        disabled
+                        required
+                    />
+                </div>
+                <div className="form_email">
+                    <label htmlFor="email">E-Mail получателя</label>
+                    <input
+                        name='email'
+                        placeholder="E-Mail получателя"
+                        value={user?.email || ''}
+                        disabled
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
             </div>
         </div>
     )

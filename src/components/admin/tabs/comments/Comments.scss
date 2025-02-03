@@ -45,6 +45,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
+                        color: #bcbcbc;
                     }
                 }
 
@@ -66,6 +67,45 @@
                     flex-wrap: wrap;
                     gap: 10px;
                     margin-top: 10px;
+                }
+            }
+
+            >.addreplyfrom_admin {
+
+                span {
+                    display: flex;
+                    flex-direction: column;
+                    color: #FE5F1E;
+                    cursor: pointer;
+                    width: 60px;
+                }
+
+                >.replyfrom_admin__body {
+                    display: flex;
+                    gap: 10px;
+                }
+            }
+
+            >.replyfrom_admin {
+                display: flex;
+                flex-direction: column;
+                font-size: 18px;
+                background-color: #FFF7EE;
+                border-radius: 10px;
+                padding: 10px;
+                margin-top: 10px;
+                border-left: 1px solid #FE5F1E;
+                border-left-width: 2px;
+
+                >span {
+                    color: #FE5F1E;
+                    cursor: pointer;
+                    width: 60px;
+                }
+
+                >.replyfrom_admin__body {
+                    display: flex;
+                    gap: 10px;
                 }
             }
 

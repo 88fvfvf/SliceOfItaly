@@ -1,9 +1,9 @@
-// Payment.tsx
 import React from 'react';
 import { useAppSelector } from '../../../hooks/hooks'
 import './Payment.scss'
-import { FaBoxOpen } from "react-icons/fa";
-import { TbTruckDelivery } from "react-icons/tb";
+import { BsInboxes } from "react-icons/bs";
+import { BsTruck } from "react-icons/bs";
+
 
 interface PaymentProps {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -18,28 +18,28 @@ const Payment: React.FC<PaymentProps> = ({ handleSubmit }) => {
                 <span>Итого:</span>
                 <h2>{totalPrice} ₽</h2>
             </div>
-            <div className="payment_body">
+            <dl className="payment_body">
                 <div className="cost_products">
                     <div>
-                        <FaBoxOpen size={20} />
-                        <h3>Стоимость товаров:</h3>
-                    </div>
-                    <div>
-                        <h3>{totalPrice} ₽</h3>
+                        <BsInboxes size={20} />
+                        <dt className='product_dt'>
+                            <div>Стоимость:</div>
+                        </dt>
+                        <dd>{totalPrice} ₽</dd>
                     </div>
                 </div>
                 <div className="deliver">
                     <div>
-                        <TbTruckDelivery size={20} />
-                        <h3>Доставка:</h3>
-                    </div>
-                    <div>
-                        <h3>Бесплатно</h3>
+                        <BsTruck size={20} />
+                        <dt className='product_dt'>
+                            <div>Доставка:</div>
+                        </dt>
+                        <dd className='free'>Бесплатно</dd>
                     </div>
                 </div>
-            </div>
+            </dl>
             <div className="toPay">
-                <button type='submit' onClick={() => handleSubmit}>Перейти к оплате</button>
+                <button type='submit' form="orderForm" onClick={() => handleSubmit}>Перейти к оплате</button>
             </div>
         </div>
     );

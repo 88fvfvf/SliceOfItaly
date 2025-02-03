@@ -1,4 +1,4 @@
-import { Input, message, Modal, Rate, UploadFile } from "antd";
+import { Input, message, Modal, Rate } from "antd";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../../firebase"; // Firebase Storage
@@ -13,8 +13,6 @@ interface NotificationsModalProps {
 const NotificationsModal = ({ userId }: NotificationsModalProps) => {
     const { user } = useFirebaseAuth();
     const notifications = useNotifications(userId);
-
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [rating, setRating] = useState(0);
     const [commentText, setCommentText] = useState('');
 
@@ -24,15 +22,10 @@ const NotificationsModal = ({ userId }: NotificationsModalProps) => {
             return;
         }
 
-        const photoURLs = fileList
-            .filter(file => file.url)
-            .map(file => file.url);
-
         const reviewData = {
             userId,
             rating: rating || 5,
             comment: commentText,
-            photoURLs,
             timestamp: new Date().toISOString(),
             userName: user?.displayName || 'Аноним',
         };
@@ -46,7 +39,6 @@ const NotificationsModal = ({ userId }: NotificationsModalProps) => {
 
         setRating(0);
         setCommentText('');
-        setFileList([]);
     };
 
     const handleClose = async (notificationId: string) => {

@@ -13,28 +13,35 @@
     >.address_info {
         display: flex;
         justify-content: center;
+        flex-direction: column;
         flex-wrap: wrap;
         padding: 20px;
         gap: 10px;
 
-        >input {
-            border: 1px solid #d0d0d0;
-            font-size: 16px;
-            padding-left: 15px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            max-width: 720px;
-            width: 100%;
-            height: 48px;
+        >div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
-            &:focus-visible {
-                outline: 1px solid #FE5F1E;
+            >input {
+                border: 1px solid #d0d0d0;
+                font-size: 16px;
+                padding-left: 15px;
+                margin-bottom: 15px;
+                border-radius: 15px;
+                max-width: 705px;
+                width: 100%;
+                height: 48px;
+
+                &:focus-visible {
+                    outline: 1px solid #FE5F1E;
+                }
+
+                &::placeholder {
+                    font-family: 'Nunito';
+                }
             }
 
-            &::placeholder {
-                font-family: 'Nunito';
-            }
         }
-
     }
 }

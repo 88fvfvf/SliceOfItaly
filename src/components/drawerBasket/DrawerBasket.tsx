@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { addBasket, deleteBasket, minusBasket } from '../../store/basket/basket.slice';
 import './DrawerBasket.scss';
 import Empty from './empty/Empty';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface DrawerBasketProps {
     open: boolean;
@@ -17,6 +17,22 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
     const data = useAppSelector(state => state.basketSlice.basket);
     const totalPrice = useAppSelector(state => state.basketSlice.totalPrice);
     const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
+
+    const handleTransition = () => {
+        if (document.startViewTransition) {
+            // Включаем анимацию перехода
+            document.startViewTransition(() => {
+                // Переход на страницу заказа
+                navigate("/order");
+            });
+        } else {
+            // Если API не поддерживается, просто переходим
+            navigate("/order");
+        }
+    };
+
 
     return (
         <div className='DrawerBasket'>
@@ -82,7 +98,7 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
                                     <h3>{totalPrice} ₽</h3>
                                 </div>
                             </div>
-                            <Link to={"/order"}>    
+                            <Link to={"/order"} onClick={handleTransition}>    
                                 <button>К оформлению заказа <IoIosArrowForward size={20} /></button>
                             </Link>
                         </div>

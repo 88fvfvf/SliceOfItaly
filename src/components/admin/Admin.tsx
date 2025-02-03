@@ -9,6 +9,8 @@ import Comments from './tabs/comments/Comments';
 import EditMenu from './tabs/editMenu/EditMenu';
 import ProcessingOrders from './tabs/processingOrders/ProcessingOrders';
 import SalesStatistics from './tabs/salesStatistics/SalesStatistics';
+import { RiUserSettingsLine } from 'react-icons/ri';
+import PersonalData from '../profile/tabsProfile/TabsItem/personalData/PersonalData';
 
 const Admin: React.FC = () => {
     const tabItems = [
@@ -16,6 +18,7 @@ const Admin: React.FC = () => {
         { label: 'Статистика продаж', icon: <MdOutlineAnalytics size={18} />, key: '2', children: <SalesStatistics /> },
         { label: 'Редактирование меню', icon: <FaRegEdit size={18} />, key: '3', children: <EditMenu /> },
         { label: 'Отзывы клиентов', icon: <AiOutlineComment size={18} />, key: '4', children: <Comments /> },
+        { label: 'Личные данные', icon: <RiUserSettingsLine size={18} />, key: '5', children: <PersonalData /> },
     ];
 
     return (

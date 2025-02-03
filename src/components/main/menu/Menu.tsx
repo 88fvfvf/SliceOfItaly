@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IProducts } from '../../../types/Types';
 import './Menu.scss';
 
@@ -8,6 +8,21 @@ interface IPropsMenu {
 }
 
 const Menu = ({ data }: IPropsMenu) => {
+    const navigate = useNavigate();
+
+    const handleTransition = (title: string) => {
+        if (document.startViewTransition) {
+            // Включаем анимацию перехода
+            document.startViewTransition(() => {
+                // Переход на страницу заказа
+                navigate(`/product/${title}`);
+            });
+        } else {
+            // Если API не поддерживается, просто переходим
+            navigate(`/product/${title}`);
+        }
+    };
+
     return (
         <>
             {data.map(data => (
@@ -31,7 +46,7 @@ const Menu = ({ data }: IPropsMenu) => {
                         }
                     </div>
                     <div className="pizza__options">
-                        <Link to={`/product/${data.title}`}>
+                        <Link to={`/product/${data.title}`} onClick={() => handleTransition(data.title)}>
                             <div className="main__price_button">
                                 <h3><span>от</span> {data?.prices[0]} ₽</h3>
                                 <button>

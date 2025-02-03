@@ -41,7 +41,7 @@ const Login = () => {
                     user.emailVerified ? (
                         // Если пользователь подтвердил почту
                         <Badge count={notifications.length} color="#FE5F1E">
-                            <Link to="/profile" className="log__container__login">
+                            <Link viewTransition to="/profile" className="log__container__login">
                                 <BsFillPersonFill size={20} />
                                 <p>Профиль</p>
                             </Link>

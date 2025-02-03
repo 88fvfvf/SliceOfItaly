@@ -64,12 +64,12 @@ const Order = ({ basket }: IBasket) => {
         <div className="MakingOrder">
             <div className="order">
                 <Basket basket={basket} clearBasket={() => dispatch(deleteAll())} />
-                <form onSubmit={handleSubmit}>
+                <form id="orderForm" onSubmit={handleSubmit}>
                     <Personal user={user || null} handleInputChange={handleInputChange} />
                     <Address userData={userData} handleInputChange={handleInputChange} />
-                    <Payment handleSubmit={handleSubmit} />
                 </form>
             </div>
+            <Payment handleSubmit={handleSubmit} />
         </div>
     );
 };
