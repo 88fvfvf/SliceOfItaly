@@ -49,7 +49,6 @@ const Comments: React.FC = () => {
         try {
             await deleteDoc(doc(db, 'reviews', id));
             setReviews(prevReviews => prevReviews.filter(review => review.id !== id));
-            console.log('Отзыв удален');
         } catch (e) {
             console.error('Ошибка удаления отзыва:', e);
         }

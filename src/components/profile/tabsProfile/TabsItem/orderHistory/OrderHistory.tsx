@@ -36,8 +36,8 @@ const OrderHistory = () => {
     }));
 
     return (
-        <div>
-            <h1 className="orderHistory">История заказов</h1>
+        <div className="orderHistory">
+            <h1>История заказов</h1>
             {orders.length > 0 ? (
                 <>
                     <Table<DataType>

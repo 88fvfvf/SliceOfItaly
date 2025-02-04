@@ -53,7 +53,6 @@ async function sendNotification(userId: string, orderId: string) {
       orderId,
       read: false, // Пометка, что уведомление еще не прочитано
     });
-    console.log("Уведомление отправлено.");
   } catch (err) {
     console.error("Ошибка при отправке уведомления:", err);
   }
@@ -79,17 +78,14 @@ export const updateOrderStatus = async (userId: string, orderKey: string, newSta
         userData: { ...orderData.userData, status: newStatus },
         timestamp: new Date().toISOString(),
       });
-      console.log(`Заказ ${orderKey} перенесён в Firestore.`);
       sendNotification(userId, orderKey);
 
       // 2. Удаление из Realtime Database
       await remove(orderRef);
-      console.log(`Заказ ${orderKey} удалён из Realtime Database.`);
     } else {
       // Обновление статуса в Realtime Database
       const userDataRef = ref(database, `orders/${userId}/${orderKey}/userData`);
       await update(userDataRef, { status: newStatus });
-      console.log(`Статус заказа ${orderKey} обновлён на ${newStatus}.`);
     }
   } catch (error) {
     console.error("Ошибка при обновлении статуса:", error);

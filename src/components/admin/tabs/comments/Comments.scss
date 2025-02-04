@@ -3,11 +3,12 @@
     >h1 {
         font-weight: 500;
     }
-
+    
     >.comment__body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-inline: 30px;
 
 
         >.comments__items {

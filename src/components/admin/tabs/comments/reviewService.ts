@@ -11,7 +11,6 @@ export const addReply = async (reviewId: string, replyText: string) => {
                 timestamp: new Date().toISOString()
             }
         })
-        console.log('Ответ добавлен');
     } catch (e) {
         console.error('Ошибка добавления ответа:', e);
     }

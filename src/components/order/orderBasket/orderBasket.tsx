@@ -22,8 +22,9 @@ const Basket = ({ basket, clearBasket }: IBasketProps) => {
                     <span>Очистить корзину</span>
                 </span>
             </div>
-            {basket.map((item) => {
-                const uniqueKey = `${item.id}_${item.size}_${item.type}_${item.unit}_${item.tasty.join(",")}`;
+            {basket.map((item, index) => {
+                const tastyKey = Array.isArray(item.tasty) ? item.tasty.join(",") : '';
+                const uniqueKey = `${item.id}_${item.size || ''}_${item.type || ''}_${item.unit || ''}_${tastyKey}_${index}`;
                 return (
                     <div className="basket_cart" key={uniqueKey}>
                         <div className="cart_product">
@@ -39,7 +40,9 @@ const Basket = ({ basket, clearBasket }: IBasketProps) => {
                                     {item.units && <span>{item.units[item.unit]}</span>}
                                 </p>
                                 <div className="cart_toTasty">
-                                    {item.tasty.length > 0 ? <p>+ {item.tasty.join(",")}</p> : null}
+                                    {item.tasty && item.tasty.length > 0 && (
+                                        <p className='cart_toTasty'>+ {item.tasty.join(",")}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>

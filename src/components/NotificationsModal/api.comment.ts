@@ -3,8 +3,7 @@ import { db } from '../../firebase';
 
 export const addReview = async (reviewData: any) => {
     try {
-        const docRef = await addDoc(collection(db, 'reviews'), reviewData);
-        console.log('Отзыв добавлен с ID: ', docRef.id);
+        await addDoc(collection(db, 'reviews'), reviewData);
     } catch (e) {
         console.error('Ошибка добавления отзыва: ', e);
     }

@@ -125,11 +125,11 @@ const ProductsBlock = ({ productData }: propsData) => {
                     onClick={() => {
                         const updatedProduct = {
                             ...productData,
-                            size: dataSize,
-                            type,
-                            weightProduct: productData?.weight[size || units],
-                            tasty: tasty,
-                            unit: units,
+                            ...(productData.sizes && { size: dataSize }),
+                            ...(productData.types && { type }),
+                            ...(productData.weight && { weightProduct: productData.weight[size || units] }),
+                            ...(productData.toTasty && { tasty }),
+                            ...(productData.units && { unit: units }),
                             finalPrice: totalPriceProduct()
                         };
                         dispatch(addBasket(updatedProduct));

@@ -44,8 +44,9 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
             >
                 {data?.length ? (
                     <div className="body_item">
-                        {data.map((basket) => {
-                            const uniqueKey = `${basket.id}_${basket.size}_${basket.type}_${basket.unit}_${basket.tasty.join(",")}`;
+                        {data.map((basket, index) => {
+                            const tastyKey = Array.isArray(basket.tasty) ? basket.tasty.join(",") : '';
+                            const uniqueKey = `${basket.id}_${basket.size || ''}_${basket.type || ''}_${basket.unit || ''}_${tastyKey}_${index}`;
                             return (
                                 <div className="basket" key={uniqueKey}>
                                     <div className="basket_details">
@@ -57,7 +58,9 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
                                                 <h3>{basket.title}</h3>
                                             </div>
                                             {basket.sizes && <p>{basket.size}, {basket.type} тесто, {basket.weightProduct}</p>}
-                                            {basket.tasty.length > 0 ? <p className='basket_ingredients'>+ {basket.tasty.join(",")}</p> : null}
+                                            {basket.tasty && basket.tasty.length > 0 && (
+                                                <p className='basket_ingredients'>+ {basket.tasty.join(",")}</p>
+                                            )}
                                             {basket.units && <p>{basket.units[basket.unit]}</p>}
                                         </div>
                                         <div className="delete_basket">
@@ -98,7 +101,7 @@ const DrawerBasket = ({ open, onCloseDrawer }: DrawerBasketProps) => {
                                     <h3>{totalPrice} ₽</h3>
                                 </div>
                             </div>
-                            <Link to={"/order"} onClick={handleTransition}>    
+                            <Link to={"/order"} onClick={handleTransition}>
                                 <button>К оформлению заказа <IoIosArrowForward size={20} /></button>
                             </Link>
                         </div>

@@ -15,7 +15,6 @@ const PersonalData = () => {
                     displayName: newDisplayName,
                 });
                 setChangeState(false)
-                console.log('Display name updated successfully');
             } catch (err) {
                 alert('Error updating display name');
             }

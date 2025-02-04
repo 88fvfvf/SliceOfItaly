@@ -52,7 +52,6 @@ const Order = ({ basket }: IBasket) => {
                     userData: { ...userData, timestamp: serverTimestamp() },
                     basket,
                 });
-                console.log("Order placed successfully");
                 dispatch(deleteAll());
             } catch (err) {
                 console.error("Error placing order", err);

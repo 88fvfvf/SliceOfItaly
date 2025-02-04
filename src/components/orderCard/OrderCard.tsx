@@ -26,8 +26,8 @@ const OrderCard: React.FC<OrderCardProps> = ({
     isUser,
 }) => {
 
-    
-    
+
+
     return (
         <>
             <Card
