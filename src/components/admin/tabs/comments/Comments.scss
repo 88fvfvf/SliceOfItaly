@@ -3,7 +3,7 @@
     >h1 {
         font-weight: 500;
     }
-    
+
     >.comment__body {
         display: flex;
         flex-direction: column;
@@ -34,7 +34,15 @@
                     display: flex;
                     align-items: center;
                     gap: 10px;
+
+                    >.comments__item-name {
+
+                        >.userName_you {
+                            color: #FE5F1E;
+                        }
+                    }
                 }
+
 
                 >.comment_item-left {
                     display: flex;
@@ -97,6 +105,17 @@
                 margin-top: 10px;
                 border-left: 1px solid #FE5F1E;
                 border-left-width: 2px;
+
+                >.reply_header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    >.replyed {
+                        color: #ffad4f;
+                        font-size: 14px;
+                    }
+                }
 
                 >span {
                     color: #FE5F1E;

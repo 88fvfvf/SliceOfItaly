@@ -87,7 +87,15 @@ const Comments: React.FC = () => {
                                         {review.userName ? review.userName.charAt(0).toUpperCase() : 'A'}
                                     </Avatar>
                                     <div className="comments__item-name">
-                                        <h3>{review.userName}</h3>
+                                        {
+                                            user?.uid === review.userId ? (
+                                                <div className='userName_you'>
+                                                    <h3>Вы: {review.userName}</h3>
+                                                </div>
+                                            ) : (
+                                                <h3>{review.userName}</h3>
+                                            )
+                                        }
                                     </div>
                                 </div>
                                 <div className="comment_item-left">
@@ -124,7 +132,12 @@ const Comments: React.FC = () => {
                             </div>
                             {review.reply ? (
                                 <div className="replyfrom_admin">
-                                    <strong>Ответ от заведения:</strong>
+                                    <div className='reply_header'>
+                                        <strong>Ответ от заведения:</strong>
+                                        <p className='replyed'>
+                                            {dayjs(review.reply.timestamp).locale('ru').format('HH:mm DD.MM')}
+                                        </p>
+                                    </div>
                                     <p>{review.reply.text}</p>
                                 </div>
                             ) : (
