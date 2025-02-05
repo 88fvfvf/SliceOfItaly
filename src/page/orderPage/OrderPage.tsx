@@ -1,40 +1,29 @@
-import Empty from '../../components/drawerBasket/empty/Empty'
-import Footer from '../../components/footer/Footer'
-import Header from '../../components/Header/Header'
-import Order from '../../components/order/Order'
-import { useAppSelector } from '../../hooks/hooks'
-import OrderHeader from './orderHeader/OrderHeader'
+import Empty from '../../components/drawerBasket/empty/Empty';
+import Footer from '../../components/footer/Footer';
+import Header from '../../components/Header/Header';
+import Order from '../../components/order/Order';
+import { useAppSelector } from '../../hooks/hooks';
+import './OrderPage.scss'; // <-- Не забудь импортировать стили!
 
 const OrderPage = () => {
-    const { basket } = useAppSelector(state => state.basketSlice)
+    const { basket } = useAppSelector(state => state.basketSlice);
+
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh'
-        }}>
-            <div className='container'>
+        <div className="OrderPage">
+            <Header />
+            <main className="OrderPage__content">
                 {basket.length > 0 ? (
-                    <>
-                        <OrderHeader />
-                        <div className='OrderPage' style={{ padding: 20 }}>
-                            <h2>Оформление заказа</h2>
-                            <Order basket={basket} />
-                        </div>
-                    </>
+                    <div className="OrderPage__order">
+                        <h2>Оформление заказа</h2>
+                        <Order basket={basket} />
+                    </div>
                 ) : (
-                    <>
-                        <Header />
-                        <div style={{ paddingTop: 100 }}>
-                            <Empty />
-                        </div>
-                    </>
-                )
-                }
-            </div>
+                    <Empty />
+                )}
+            </main>
             <Footer />
         </div>
-    )
-}
+    );
+};
 
-export default OrderPage
+export default OrderPage;

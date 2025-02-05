@@ -150,9 +150,13 @@
         }
 
         >.google button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: rgba(254, 95, 30, 0.1);
             transition: all 0.3s ease;
             color: #FE5F1E;
+            gap: 5px;
 
             &:hover {
                 background-color: rgba(254, 95, 30, 0.2);

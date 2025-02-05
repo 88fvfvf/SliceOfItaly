@@ -68,23 +68,31 @@
                 align-items: center;
                 background-color: rgb(243, 244, 246);
                 border-radius: 15px;
-                width: 240px;
+                width: 250px;
                 height: 55px;
                 cursor: pointer;
                 user-select: none;
 
                 >article {
-                    width: 205px;
+                    width: 235px;
                 }
             }
 
-            span {
-                color: #282828;
+            >div div {
+                >.icon_sort {
+                    padding-top: 3px;
+                }
+
+                >span {
+                    color: #282828;
+                    font-family: "Nunito";
+                    font-size: 15px;
+                    font-style: normal;
+                }
             }
 
             .allFilter {
                 display: none;
-
             }
         }
     }

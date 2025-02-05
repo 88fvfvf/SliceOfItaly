@@ -3,11 +3,12 @@
     position: relative;
     justify-content: space-between;
     margin-top: 20px;
+    width: 100%;
 
     >.order {
+        user-select: none;
         max-width: 760px;
         width: 100%;
-        user-select: none;
 
         >.order_basket {
             border-radius: 30px;

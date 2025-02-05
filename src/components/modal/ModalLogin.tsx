@@ -7,6 +7,8 @@ import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { useFirebaseAuth } from '../../hooks/useFirebaseAuth';
 import './ModalLogin.scss';
 import Regist from './regist/ModalRegist';
+import { FcGoogle } from "react-icons/fc";
+
 
 interface ModalLoginProps {
     closeModal: () => void;
@@ -18,7 +20,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
     const [loginMessage, setLoginMessage] = useState("");
     const [user, setUser] = useState<User | null>(null); // Состояние для хранения данных о пользователе
     const [showPassword, setShowPassword] = useState(false)
-    const {auth} = useFirebaseAuth()
+    const { auth } = useFirebaseAuth()
     const [isRegist, setIsRegist] = useState(false);
     const db = getFirestore();
 
@@ -69,7 +71,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                 if (userData.role === "admin") {
                     message.success("Вы вошли как администратор!");
                 } else {
-                    message.success("Вы вошли как пользователь.");
+                    message.success("Вы успешно вошли.");
                 }
             } else {
                 message.error("Ошибка: пользователь не найден в базе данных.");
@@ -143,7 +145,9 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ closeModal }) => {
                             <p>Войти через</p>
                         </div>
                         <div className="google">
-                            <button onClick={googleLogIn}>Войти через Google</button>
+                            <button onClick={googleLogIn}>
+                                <FcGoogle size={22} />Google
+                            </button>
                         </div>
                         <div className="registration">
                             <button onClick={() => setIsRegist(true)}>Регистрация</button>

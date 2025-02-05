@@ -1,9 +1,11 @@
 import { Dropdown, MenuProps, Space, Typography } from "antd";
-import { SortIcon } from '../../../../public/svg/icone.tsx';
-import { items } from './items.ts';
 import { useState } from "react";
+import { TiFilter } from "react-icons/ti";
 import { useDispatch } from 'react-redux';
 import { sortProducts } from '../../../store/filter/filter.slice.ts';
+import { items } from './items.ts';
+
+
 
 const Sort = () => {
     const [sort, setSort] = useState('');
@@ -24,7 +26,9 @@ const Sort = () => {
         >
             <Typography>
                 <Space style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <SortIcon />
+                    <div className="icon_sort">
+                        <TiFilter size={22} />
+                    </div>
                     <span>Сортировка</span>
                     <span style={{ color: "#FE5F1E", borderBottom: "1px dotted red" }}>{sort}</span>
                 </Space>

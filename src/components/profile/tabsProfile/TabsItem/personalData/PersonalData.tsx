@@ -4,9 +4,11 @@ import { useFirebaseAuth } from "../../../../../hooks/useFirebaseAuth";
 import "./PersonalData.scss";
 
 const PersonalData = () => {
+    const { user, auth } = useFirebaseAuth()
     const [newDisplayName, setNewDisplayName] = useState('');
     const [changeState, setChangeState] = useState(false)
-    const { user, auth } = useFirebaseAuth()
+    const [cardNumber, setCardNumber] = useState("")
+    const [expiry, setExpiry] = useState("");
 
     const handleChangeDisplayName = async () => {
         if (user && newDisplayName) {
@@ -22,6 +24,29 @@ const PersonalData = () => {
             alert('Please enter a new display name');
         }
     };
+
+    const formatCardNumber = (value: string) => {
+        // Удаляем все нецифровые символы
+        const digitsOnly = value.replace(/\D/g, "");
+        // Ограничиваем длину до 16 цифр
+        const limitedDigits = digitsOnly.slice(0, 16)
+        // Добавляем пробелы после каждых 4 цифр
+        return limitedDigits.replace(/(\d{4})/g, "$1 ").trim()
+    }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formattedValue = formatCardNumber(event.target.value);
+        setCardNumber(formattedValue);
+    };
+
+    const formatExpiry = (value: string) => {
+        const digitsOnly = value.replace(/\D/g, "").slice(0, 4);
+        if (digitsOnly.length > 2) {
+            return `${digitsOnly.slice(0, 2)}/${digitsOnly.slice(2)}`;
+        }
+        return digitsOnly;
+    };
+
 
     return (
         <div className="PersonalData">
@@ -61,6 +86,24 @@ const PersonalData = () => {
                             placeholder="E-Mail"
                         />
                     </div>
+                    <div className="card_input">
+                        <label htmlFor="card">Карта</label>
+                        <input
+                            type="text"
+                            onChange={handleChange}
+                            maxLength={19}
+                            value={cardNumber}
+                        />
+                        <input
+                            type="text"
+                            value={expiry}
+                            onChange={(e) => setExpiry(formatExpiry(e.target.value))}
+                            placeholder="MM/YY"
+                            maxLength={5}
+                            className="validThru"
+                        />
+                    </div>
+                    <button className="btn_change_allInput">Изменить</button>
                 </div>
             </div>
             <button onClick={() => auth.signOut()}>Выйти с аккаунта</button>

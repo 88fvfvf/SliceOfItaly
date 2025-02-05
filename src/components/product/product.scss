@@ -1,34 +1,35 @@
 .Product {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    margin-inline: auto;
-    width: 100%;
+    min-height: 100vh; // Делаем контейнер на всю высоту экрана
 
-    >.container {
+    >header {
+        margin: 0; // Если вдруг у Header есть margin, убираем
+    }
+}
 
-        >.Breadcrumb {
-            padding-top: 30px;
-            padding-inline: 20px;
+.ProductContent {
+    flex: 1; // Основной контент занимает всё доступное пространство
+}
 
-            ol,
-            a {
-                display: flex;
-                list-style: none;
-                text-decoration: none;
-                color: #aaa;
-                gap: 10px;
+.Breadcrumb {
 
-                >li:hover {
-                    transition: all 0.3s ease;
-                    color: #FE5F1E;
-                    cursor: pointer;
-                }
+    ol,
+    a {
+        display: flex;
+        list-style: none;
+        text-decoration: none;
+        color: #aaa;
+        gap: 10px;
 
-                >.active {
-                    color: #FE5F1E;
-                }
-            }
+        >li:hover {
+            transition: all 0.3s ease;
+            color: #FE5F1E;
+            cursor: pointer;
+        }
+
+        >.active {
+            color: #FE5F1E;
         }
     }
 }

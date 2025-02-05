@@ -7,13 +7,14 @@
     >.allInputData {
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
         >.personal_input {
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-direction: column;
-            background-color: rgb(243, 244, 246);
+            border: 1px solid #d0d0d0;
             border-radius: 20px;
             padding: 20px;
             width: 370px;
@@ -55,13 +56,44 @@
                     font-weight: 500;
                 }
             }
-        }
 
+            .card_input {
+                position: relative;
+
+                >.validThru {
+                    position: absolute;
+                    text-align: center;
+                    font-size: 14px;
+                    border: none;
+                    outline: none;
+                    padding: 10px;
+                    width: 60px;
+                    height: 20px;
+                    right: 10px;
+                    top: 30px;
+                }
+            }
+
+            >.btn_change_allInput {
+                background-color: none;
+                border-radius: 10px;
+                border: 1px solid #d0d0d0;
+                font-weight: 500;
+                width: 120px;
+                height: 40px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: #FE5F1E;
+                }
+            }
+        }
     }
 
     >button {
-        background-color: rgb(243, 244, 246);
-        border-radius: 20px;
+        border: 1px solid #d0d0d0;
+        border-radius: 10px;
         margin-top: 10px;
         font-size: 14px;
         border: none;

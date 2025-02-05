@@ -5,6 +5,7 @@ import { FirebaseProvider } from './contexts/FirebaseProvider';
 import { auth, firestore } from './firebase'; // Импорт из вашего файла настроек Firebase
 import Router from './router/Router';
 import { persistor, store } from './store/store';
+import './main.css'
 
 const rootElement = document.getElementById('root');
 
